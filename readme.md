@@ -1,3 +1,7 @@
+## Learn_ON
+
+Learn_on was made as our teams solution for an online education platform for the 2015 HighSchoolHacks competition and it placed 2nd. It's based around a concept of courses which are collections of lectures (pdf files and videos) and tests. It has tones of feauters such as an advanced and simple to use admin panel, a quick search, sorting categories, comment system, WYSIWYG static pages... 
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
@@ -22,6 +26,14 @@ Thank you for considering contributing to the Laravel framework! The contributio
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-### License
+## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## Development Team
+
+Lead Front End Developer [@DarkBlackJPG](https://github.com/DarkBlackJPG)
+
+Lead Back End Developer [@veljkodjokic](https://github.com/veljkodjokic)
+
+Lead Designer [@MrRushUO](https://github.com/MrRushUO)
