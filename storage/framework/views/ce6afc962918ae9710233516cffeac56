@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="CSS.css" type="text/css">
+    <script type="text/javascript" src="jQuery/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="jQuery/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+
+    <title>Registration</title>
+</head>
+<body style="background-color: #ffffff; margin: 0px;opacity:.95;overflow:auto" id="abc" onresize="resize()">
+<div id="Container1" style="background-color: red">
+    <div id="Hhh" style="background-color: #5e5e5e;border-bottom: solid #ee2033 10px" >
+        <div class="header" style="padding-top: 10px;font-family: 'Porter', cursive; margin:0 20px 0 0;">
+            <div id="about_us" style="float:right;margin-right: 200px; background-color: transparent;" >
+                <nav>
+                    <ul>
+                        <li id="login">
+                            <a href="Probacemo.html" id="login-trigger" >
+                                Log in
+                            </a>
+                        </li>
+                        <li id="abut">
+                            <a id="about-trigger">About Us</a>
+                            <div id="about-content" style="max-width:250px;white-space:normal">
+                                <h1>Learn and... STUFF</h1>
+                                <br/>
+                                Ovde ide lep tekst o tome kako smo mi nastali i tako... To se sve desilo jednog lepog dana u MESCU...
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+        <br/>
+        <div id="form_password_rex" style="margin-top: 10%">
+            <form action="#" id="form2" method="post" name="form" style="display: block; padding-bottom: 20px; padding-top: 10px;margin-left: 37%; margin-top: 3%;position: absolute">
+
+                <h2>REGISTER</h2>
+                <hr>
+                <input type="text" class="Text" id="usernamen" name="usernamen" placeholder="Username" >
+                <br/>
+                <input type="email" class="Text" id="emailn" name="emailn" placeholder="Email" >
+                <br/>
+
+                <input type="password" class="Text" id="pswdn" name="pswdn" placeholder="Password"oninput="check()" >
+                <br/>
+                <input type="password" class="Text" id="repswdn" name="repswdn" placeholder="Re-Password" oninput="check()"  >
+                <br/>
+                <br/><br/>
+                <div align="center">
+                    <button type="submit" name="register" id="register" class="btn1"> Register </button>
+                </div>
+            </form>
+        </div>
+        <div id="logo" style="top:5%;margin-top:8%;right:0;position: fixed" align="top">
+            <a href="#"><img src="Owl.svd" class="Giffy" id="Gif_Logo" style="max-width: 130px;float: right"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var w=window.innerWidth;
+        var h=window.innerHeight;
+        var nw=w;
+        var nh=h-10;
+        document.getElementById("Hhh").style.height=nh+"px";
+        document.getElementById("Hhh").style.width=nw+"px";
+        function resize(){
+            var w=window.innerWidth;
+            var h=window.innerHeight;
+            var nw=w;
+            var nh=h-10;
+            document.getElementById("Hhh").style.height=nh+"px";
+            document.getElementById("Hhh").style.width=nw+"px";
+        }
+
+    </script>
+    <script type="text/javascript">
+        function check() {
+            var ps1 = document.getElementById("pswdn");
+            var ps2 = document.getElementById("repswdn");
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+            var transparent='transparent';
+            var sendButton=document.getElementById("send")
+            var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+            if (ps1.value == ps2.value) {
+                ps2.style.background = goodColor;
+                sendButton.disabled=false;
+            }
+            else {
+
+                ps2.style.background = badColor;
+                sendButton.disabled=true;
+            }
+            if(ps1.value == "" || ps2.value=="" )
+            {
+                ps2.style.background=transparent;
+                sendButton.disabled=true;
+            }
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#login-trigger').click(function(){
+                $(this).next('#login-content').slideToggle();
+                $(this).toggleClass('active');
+            })
+        });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#about-trigger').click(function(){
+                $(this).next('#about-content').slideToggle();
+                $(this).toggleClass('active');
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        $('.bottomz').click(function () {
+            $('html, body').animate({
+                scrollTop: $(document).height()
+            }, 'slow');
+            return false;
+        });
+    </script>
+    <script type="text/javascript">
+        $('.Giffy').click(function () {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow');
+            return false;
+        });
+    </script>
+</body>
+</html>

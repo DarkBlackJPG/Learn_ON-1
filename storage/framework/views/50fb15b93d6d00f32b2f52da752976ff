@@ -1,0 +1,92 @@
+<?php $__env->startSection('content'); ?>
+    <?php echo e(dd(\App\Course::where('id',$id))); ?>
+
+    <?php echo Form::model($course=new \App\Course, ['url'=>'courses', 'files'=>true]); ?>
+
+    <body >
+    <div id="gornjalinija"></div>
+    <div id="learn"><a href="/main">LEARN_ON</a></div>
+    <div id="podvucena"></div>
+    <div style="width:35%; left:46%; position:absolute;">
+        <section style="font-size:2em; font-family: Intro_Bold"> - LECTURE EDITOR - </section>
+    </div>
+    <?php echo $__env->make('partials._levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div id="polje4">
+        <div class="width" id="markup">
+<div>
+    <div style="position: relative; top:100px;display: inline-block">
+        <?php echo Form::open(['url'=>'lecture','files'=>true]); ?>
+
+        <?php echo Form::hidden('id',$id); ?>
+
+        <div style="display: block">
+            <?php echo Form::label('lecture_title','First lecture title:'); ?>
+
+            <?php echo Form::text('lecture_title',null,['placeholder'=>'Enter lecture title','class'=>'text_area_create']); ?>
+
+        </div>
+        <div style="display: block">
+            <?php echo Form::label('pdf','Choose a PDF file for the first lecture:'); ?>
+
+            <?php echo Form::file('pdf',null,['file_extension'=>'.pdf','style'=>'']); ?>
+
+
+        </div>
+        <div style="display: block">
+            <?php echo Form::label('video','Embedded video URL:'); ?>
+
+            <?php echo Form::text('video',null,['placeholder'=>'Enter video URL','class'=>'text_area_create']); ?>
+
+        </div>
+        <div style="display: block">
+        </div>
+    </div>
+    <div align="center" id="addqu" class="animacija"><a href="#" name="lec"><img src="/img/addqu.png" style="width:200px; display: inline-block; height:50px; left:85%;"/></a></div>
+</div>
+</div>
+</div>
+<?php echo Form::close(); ?>
+
+<?php $__env->startSection('footer'); ?>
+    <?php if(count($errors) > 0): ?>
+        <script>swal("Whoops!!","There were some problems with your input.<?php foreach ($errors->all() as $error)
+    {
+        echo e($error);
+    }
+    ?>","error")</script>
+    <?php endif; ?>
+    <script>
+        $('#tag_list').select2({
+            placeholder:'Choose tags'
+        });
+        $(".js-example-theme-multiple").select2({
+            theme: "classic"
+        });
+    </script>
+    <script>
+        $('[name="sub"]').on('click',function(e){
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to change the course until it is published",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, create course!",
+                        allowEscapeKey: true,
+                        allowOutsideClick:false
+                    },
+                    function(isConfirm){
+                        if (isConfirm)
+                        {
+                            form.submit(), function(markup)
+                            {
+                                $('#markup').html(markup);
+                            };
+                        }
+                    });})
+    </script>
+    </body>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

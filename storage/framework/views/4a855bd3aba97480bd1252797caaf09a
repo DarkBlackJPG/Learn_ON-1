@@ -1,0 +1,2 @@
+<div id="avatar"><?php echo Html::image('img/users/'.\Auth::user()->profile,'Error404',['style'=>'border-radius: 50%; object-fit: cover; width:75px; height:75px; left:30%; top:20px;  position:relative;']); ?></div>
+        

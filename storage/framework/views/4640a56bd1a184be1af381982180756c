@@ -1,0 +1,83 @@
+<?php $__env->startSection('content'); ?>
+    <body>
+    <div id="gornjalinija"></div>
+    <div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+    <div id="podvucena"></div>
+    <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
+    <?php echo Form::open(['url'=>'search']); ?>
+
+    <?php echo Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search courses','id'=>'search_bar']); ?>
+
+    <?php echo Form::submit('&#128270;', ['class'=>'btn1','style'=>'width:5%;left:71%; top:1.5%;position:absolute;']); ?>
+
+    <?php echo Form::close(); ?>
+
+    <?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <a href="#" onclick="showHide('polje2')">
+            <div id="mainlibrary" class="nav" style="z-index:2;">
+                <div style="position:relative;padding-top:6.5px;">
+                    <b>COURSE LIBRARY</b>
+                </div>
+                </div>
+        </a>
+        <a href="<?php echo e(url('categories')); ?>"><div id="categories"><div style="position:relative;padding-top:6.5px;">
+                    <b>CATEGORIES</b>
+                </div></div></a>
+    <div id="polje">
+    </div>
+    <div id="polje2">
+
+        <?php foreach($courses as $course): ?>
+            <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
+            <course >
+                <div id="video" style="float: left;"><img src="img/video.png" style="width:300px; height:200px;left:2%;padding-top:1%; position:relative;"></div>
+                <div style="align: left;" >
+                    <div id="imev"><b> <a href="<?php echo e(url('courses', $course->id)); ?>"><?php echo e($course->title); ?></a></b></div>
+                    <div id="opisv"><?php echo e($course->body); ?></div>
+                    <div id="datumv">Published <?php echo e($course->published_at->diffForHumans()); ?></div>
+                   <div id="categoryv"><i>Category: <?php foreach($course->tags as $tag): ?><a class="btn btn-link" id="tag_button" style=" font-size: 21pt;bottom: 0px;font-family: 'Exo'; text-decoration: none;" href="<?php echo e(url('/tags/')); ?>/<?php echo e($tag->name); ?>"><b><?php echo e($tag->name); ?></b></a> <?php endforeach; ?> </i></div>
+                </div>
+            </course>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        <?php endforeach; ?>
+            <div id="crvena_linija" style="position:absolute;width:49.7%;height:11px;background-color:red;top:-10px; left:0px;"></div>
+    </div>
+    <?php if(Session::has('flash_message')): ?><script>alert('Your course has been successfully created!');</script><?php endif; ?>
+<!-- scripts
+<script type="text/javascript">
+        var z = 1;
+        function showHide(id) {
+            document.getElementById(id).style.zIndex = z++;
+            document.getElementsByTagName('nav').style.zIndex = z++;
+        }
+    </script>
+    <script type="text/javascript">
+        var z = 1;
+        function showHide(id) {
+            document.getElementById(id).style.zIndex = z++;
+            document.getElementsByTagName('nav').style.zIndex = z++;
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#categories').click(function(){
+                $('#crvenalinija').animate({left:"50.30%"});
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#mainlibrary').click(function(){
+                $('#crvenalinija').animate({left:"0%"});
+            });
+        });
+    </script>-->
+
+    </body>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

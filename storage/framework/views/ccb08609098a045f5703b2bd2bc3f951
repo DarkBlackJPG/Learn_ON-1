@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<h2>Potvrdjivanje email adrese</h2>
+
+<div>
+    Hvala vam sto ste postali deo LearnOn ekipe.
+    Molimo vas da posetite narednu adresu kako bi ste potvrdili postojanje ove email adrese!
+    <?php echo e(URL::to('register/verify/' . $confirmation_code)); ?>.<br/>
+
+</div>
+
+</body>
+</html>

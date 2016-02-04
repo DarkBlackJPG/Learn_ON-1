@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang=en>
+<head>
+	<title>Document</title>
+</head>
+<body>
+	<?php echo $__env->yieldContent('content'); ?>
+	<?php echo $__env->yieldContent('footer'); ?>
+</body>
+</html>

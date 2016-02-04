@@ -1,0 +1,39 @@
+<?php $__env->startSection('content'); ?>
+	<body>
+	<div id="gornjalinija"></div>
+	<div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+	<div id="podvucena"></div>
+	<?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div id="content_container">
+        <!-- Area for logo -->
+        <div id="about_us_flex" >
+            <div id="cont_elements">
+                <div id="about_left_text">
+                    <div id="top_text">
+                        <div class="about-texts">THE SITE</div>
+                    </div>
+                    <hr size="3" color="black">
+                    <div id="of_text">
+                        <div class="about-texts"> OF</div>
+                    </div>
+                </div>
+                <div id="svg_logo_anim">
+                    <img src="brain_transparent.svg" style="width: 200px">
+                </div>
+                <div id="right_text">
+                    <div class="about-texts">- LEARNING -</div>
+                </div>
+            </div>
+        </div>
+        <!-- Area for content with CK Editor -->
+             <div id="about_us_content" <?php if(\Auth::User()->level==1): ?> contenteditable="true" <?php else: ?> contenteditable="false" <?php endif; ?>>
+        </div>
+    </div>
+        <script type="text/javascript">
+            CKEDITOR.disableAutoInline = false;
+            CKEDITOR.inline ( 'about_us_content' );
+            CKEDITOR.dtd.a.div = 1;
+        </script>
+    </body>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

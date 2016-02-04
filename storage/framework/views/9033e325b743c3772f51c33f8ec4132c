@@ -1,0 +1,16 @@
+<?php $__env->startSection('content'); ?>
+	<h1>About me</h1>
+	<h3>People I Like:</h3>
+	<?php if(count($people)): ?>
+		<ul>
+		<?php foreach($people as $person): ?>
+			<li><?php echo e($person); ?></li>
+		<?php endforeach; ?>
+		</ul>
+	
+	<?php endif; ?>
+	<p>
+	My name is Bond, James Bond!
+	</p>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,7 @@
+<?php $__env->startSection('content'); ?>
+	<iframe width="420" height="315" src="//www.youtube.com/embed/YQHsXMglC9A" frameborder="0" allowfullscreen></iframe>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
+	<script>alert('Contact form scripts');</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

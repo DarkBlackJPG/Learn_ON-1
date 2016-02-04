@@ -1,0 +1,14 @@
+<?php $__env->startSection('content'); ?>
+	<h1>Courses</h1>
+	<hr/>
+	<?php foreach($courses as $course): ?>
+		<course>
+			<h3>
+				<a href="<?php echo e(url('courses', $course->id)); ?>"><?php echo e($course->title); ?></a>
+			</h3>
+			<div class="body"><?php echo e($course->body); ?></div>
+		</course>
+	<?php endforeach; ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

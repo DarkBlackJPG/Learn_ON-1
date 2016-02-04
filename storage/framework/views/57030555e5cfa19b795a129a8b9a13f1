@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+    <link href="<?php echo asset('CSS.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <link href="<?php echo asset('jqbar.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<?php echo asset('jQuery/jquery-2.1.4.js'); ?>"></script>
+    <?php echo Html::script('jQuery/jqbar.js'); ?>
+
+    <?php echo Html::script('jQuery/jquery.circle-diagram.js'); ?>
+
+    <?php echo Html::script('jQuery/main.js'); ?>
+
+
+    <title>Learn_ON</title>
+</head>
+<body>
+<div id="gornjalinija"></div>
+<div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+<div id="podvucena"></div>
+<?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div id="poljeF"  style="font-family: Exo">
+    <user>
+        <?php echo Html::image('img/avatar.png','alt',['style'=>'width:200px; height:200px; left:5%; top:20px;  position:relative;']); ?>
+
+        <div id="text4" style="padding-left: 25px; left:20%;top:15%; position:absolute">E-mail:<?php echo e($user->email); ?></div>
+        <div id="text4" style="padding-left: 25px; left:20%;top:27.5%; position:absolute">Username:<?php echo e($user->username); ?></div>
+        <div id="text4" style="padding-left: 25px; left:20%;top:40%; position:absolute">Password</div>
+        <a href="#" style="font-family:Exo-bold; padding-left: 25px; left:40%;top:55%; position:absolute">Edit</a>
+    </user>
+</div>
+
+<div id="poljeF2"  style="font-family: Exo-bold"><br>
+    <b style="padding-left: 25px; color:red; font-size:2em">-COURSES FINISHED:N/A</b> <br>
+    <b style="padding-left: 25px; color:red; font-size:2em">-COURSES PASSED:N/A</b>
+
+    <div id="diagram-id-2" class="diagram" style="left:35%; top:-14%; position:relative;"
+         data-circle-diagram='{
+			"percent": "15%",
+			"size": "280",
+			"borderWidth": "4",
+			"bgFill": "#cacaca",
+			"frFill": "red",
+			"textSize": "100",
+			"textColor": "red"
+			}'>
+
+    </div>
+
+    <div id="bar-1" style="top:-230px; left:0%; position:relative; font-size: 10pt"></div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#bar-1').jqbar({ label: 'Course 1', value: 50, barColor: 'red', orientation: 'h', barWidth: 20 });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang=en>
+<head>
+        <meta charset="UTF-8">
+        <title>LearnON</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <br>
+        <br>
+        <br>
+	    <?php echo $__env->yieldContent('content'); ?>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>$('#flash-overlay-modal').modal();</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
+    <?php echo $__env->yieldContent('footer'); ?>
+</body>
+</html>

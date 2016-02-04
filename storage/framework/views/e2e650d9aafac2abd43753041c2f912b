@@ -1,0 +1,26 @@
+<?php if(count($searchUsers) >=1): ?>
+<?php foreach($searchUsers as $user): ?>
+    <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
+        <user >
+            <div style="float: left;"><object data="img/users/<?php echo e($user->profile); ?>" type="image/png" style="border-radius: 50%; object-fit: cover; width:200px; height:200px;left:2%;padding-top:1%; position:relative;">
+                    <img src="img/avatar.png" style="width:200px; height:200px;left:2%;padding-top:1%; position:relative;"/>
+                </object> </div>
+            <div style="align: left;" ><br>
+                <div id="imev"><b> <a href="<?php echo e(url('users', $user->id)); ?>" class="link"><?php echo e($user->username); ?></a></b></div>
+                <div id="opisv"><?php echo e($user->email); ?></div>
+                <div id="datumv">Created <?php echo e($user->created_at->diffForHumans()); ?></div>
+                <div id="categoryv"><i>Level:</i><i id="tag_button" style=" font-size: 21pt;bottom: 0px;font-family: 'Exo'; text-decoration: none;" ><b><?php if($user->level == '1'): ?><?php echo e('Administrator'); ?><?php else: ?> <?php echo e('User'); ?> <?php endif; ?></b></i></div>
+            </div>
+        </user>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+<?php endforeach; ?>
+<?php else: ?>
+    <div style="margin-left:37%;position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
+        <h3 id="search_error1"> Whoops! </h3>
+        <h4 id="search_error2">No users found</h4>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,59 @@
+<?php $__env->startSection('content'); ?>
+    <body>
+    <div id="gornjalinija"></div>
+    <div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+    <div id="podvucena"></div>
+    <?php echo Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search courses','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']); ?>
+
+    <?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <a href="#" onclick="showHide('polje2')">
+            <div id="mainlibrary" class="nav" style="z-index:2; border-bottom: solid 9px red ;">
+                <div style="position:relative;padding-top:6.5px;">
+                    <b>COURSE LIBRARY</b>
+                </div>
+                </div>
+        </a>
+        <a href="<?php echo e(url('categories')); ?>"><div id="categories"><div style="position:relative;padding-top:6.5px;">
+                    <b>CATEGORIES</b>
+                </div></div></a>
+    <div id="polje2">
+     <?php foreach($courses as $course): ?>
+                 <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
+                <course >
+                <div id="video" style="float: left;"><img src="img/courses/<?php echo e($course->thumbnail); ?>" style="width:300px; height:200px;left:2%;padding-top:1%; position:relative; "></div>
+                <div style="align: left;" >
+                    <div id="imev"><b> <a class="link" href="<?php echo e(url('courses', $course->id)); ?>"><?php echo e($course->title); ?></a></b></div>
+                    <div id="opisv"><?php echo e($course->body); ?></div>
+                    <div id="datumv">Published <?php echo e($course->published_at->diffForHumans()); ?></div>
+                    <div id="opisv">by <?php echo e(\App\User::find($course->user_id)->username); ?></div>
+                   <div id="categoryv"><i>Category: <?php foreach($course->tags as $tag): ?><a class="btn btn-link" id="tag_button" style=" font-size: 21pt;bottom: 0px;font-family: 'Exo'; text-decoration: none;" href="<?php echo e(url('/tags/')); ?>/<?php echo e($tag->name); ?>"><b><?php echo e($tag->name); ?></b></a> <?php endforeach; ?> </i></div>
+                </div>
+            </course>
+                <br>
+            </div>
+      <?php endforeach; ?>
+    </div>
+    <?php if(Session::has('course')): ?><script>swal("Good job!", "Your course has been successfully created", "success")</script><?php endif; ?>
+    <script>
+        var timer;
+        function up()
+        {
+            timer = setTimeout(function()
+            {
+                var keywords = $('#search_bar').val();
+
+                    $.post('search', {keywords: keywords}, function(markup)
+                    {
+                        $('#polje2').html(markup);
+                    });
+
+            }, 500);
+        }
+        function down()
+        {
+            clearTimeout(timer);
+        }
+    </script>
+    </body>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,12 @@
+<?php $__env->startSection('content'); ?>
+    <h1>Edit: <?php echo $course->title; ?></h1>
+    <br>
+    <?php echo Form::model($course, (['method'=>'PATCH' , 'action'=>['ArticlesController@update', $course->id]])); ?>
+
+    <?php echo $__env->make('courses._form',['SubmitButtonText'=>'Update Article'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::close(); ?>
+
+
+    <?php echo $__env->make('errors.list', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

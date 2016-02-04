@@ -1,0 +1,12 @@
+<?php $__env->startSection('content'); ?>
+	<h1><?php echo e($course->title); ?></h1>
+	<hr/>
+	<course>
+		<?php echo e($course->body); ?>
+
+		<br>
+		<br>
+		<i>Published <?php echo e($course->published_at->diffForHumans()); ?></i>
+	</course>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

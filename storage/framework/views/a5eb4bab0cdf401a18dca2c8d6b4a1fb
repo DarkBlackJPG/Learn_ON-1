@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<h2>Obnavljanje lozinke</h2>
+
+<div>
+    Posetite narednu adresu kako bi ste obnovili svoju lozinku:
+    <?php echo e(url('password/reset/'.$token)); ?>
+
+
+</div>
+
+</body>
+</html>

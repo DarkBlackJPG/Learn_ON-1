@@ -1,0 +1,49 @@
+<?php $__env->startSection('content'); ?>
+    <body>
+    <div id="gornjalinija"></div>
+    <div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+    <div id="podvucena"></div>
+    <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
+    <?php echo Form::open(['url'=>'search_users']); ?>
+
+    <?php echo Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search users','id'=>'search_bar']); ?>
+
+    <?php echo Form::submit('&#128270;', ['class'=>'btn1','style'=>'width:5%;left:71%; top:1.5%;position:absolute;']); ?>
+
+    <?php echo Form::close(); ?>
+
+    <?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <a href="#" onclick="showHide('polje2')">
+        <div id="mainlibrary" class="nav" style="z-index:2;">
+            <div style="position:relative;padding-top:6.5px;">
+                <b>USERS</b>
+            </div>
+        </div>
+    </a>
+
+    <div id="polje2">
+
+        <?php foreach($users as $user): ?>
+            <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
+                <user >
+                    <div id="video" style="float: left;"><img src="img/avatar.png" style="width:200px; height:200px;left:2%;padding-top:1%; position:relative;"></div>
+                    <div style="align: left;" >
+                        <div id="imev"><b> <a href="<?php echo e(url('users', $user->id)); ?>"><?php echo e($user->username); ?></a></b></div>
+                        <div id="opisv"><?php echo e($user->email); ?></div>
+                        <div id="datumv">Created <?php echo e($user->created_at->diffForHumans()); ?></div>
+                        <div id="categoryv"><i>Level:</i><i id="tag_button" style=" font-size: 21pt;bottom: 0px;font-family: 'Exo'; text-decoration: none;" ><b><?php if($user->level == '1'): ?><?php echo e('Administrator'); ?><?php else: ?> <?php echo e('User'); ?> <?php endif; ?></b></i></div>
+                    </div>
+                </user>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        <?php endforeach; ?>
+        <div id="crvena_linija" style="position:absolute;width:49.7%;height:11px;background-color:red;top:-10px; left:0px;"></div>
+    </div>
+
+    </body>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

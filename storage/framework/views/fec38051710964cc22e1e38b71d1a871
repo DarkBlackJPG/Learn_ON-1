@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+    <link href="<?php echo asset('CSS.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <link href="<?php echo asset('jqbar.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<?php echo asset('ckeditor/ckeditor.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('jQuery/jquery-2.1.4.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('jQuery/jquery-ui-1.11.4.custom/jquery-ui.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('sweetalert/sweetalert.min.js'); ?>"></script>
+    <link href="<?php echo asset('sweetalert/sweetalert.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <link href="<?php echo asset('select2-4.0.1-rc.1\dist\css\select2.min.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <title>Learn_ON</title>
+</head>
+
+<div class="container">
+
+    <?php echo $__env->yieldContent('content'); ?>
+</div>
+<script type="text/javascript" src="<?php echo asset('select2-4.0.1-rc.1\dist\js\select2.min.js'); ?>"></script>
+<?php echo Html::script('Bootstrap/js/bootstrap.min.js'); ?>
+
+<?php echo Html::script('jQuery/jqbar.js'); ?>
+
+<?php echo Html::script('jQuery/jquery.circle-diagram.js'); ?>
+
+<?php echo Html::script('jQuery/main.js'); ?>
+
+
+<?php echo $__env->yieldContent('footer'); ?>
+
+</html>

@@ -1,0 +1,25 @@
+<?php $__env->startSection('content'); ?>
+    <body>
+        <div id="gornjalinija"></div>
+        <div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+        <div id="podvucena"></div>
+        <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
+        <?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <a href="<?php echo e(url('main')); ?>">
+            <div id="mainlibrary" class="nav" style="z-index:2;">
+                <div style="position:relative;padding-top:6.5px;">
+                    <b>COURSE LIBRARY</b>
+                </div>
+            </div>
+        </a>
+        <a href="#" onclick="showHide('polje')"><div id="categories"><div style="position:relative;padding-top:6.5px;padding-bottom: 5.5px ; border-bottom: solid 9px red ;">
+                    <b>CATEGORIES</b>
+                </div></div></a>
+        <div id="polje">
+            <?php echo $__env->make('partials._cats_slike', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+    </body>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

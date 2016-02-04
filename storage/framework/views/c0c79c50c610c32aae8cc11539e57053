@@ -1,0 +1,86 @@
+<?php $__env->startSection('content'); ?>
+    <?php echo Form::open(['url'=>'/question/'.$id]); ?>
+
+<body style="font-family: Intro_Bold; overflow: hidden">
+<div id="gornjalinija"></div>
+<div id="learn"><a href="<?php echo e(url('main')); ?>"><div>LEARN</div><div style="position:absolute; top:0; left:100%;">_ON</div></a></div>
+<div id="podvucena"></div>
+<div style="width:35%; top:10px; position:absolute; font-size:36px; left:42%;"><b>-TEST EDITOR-</b></div>
+<?php echo $__env->make('partials._levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div id="box">
+    <?php echo Form::text('question',null,['id'=>'pitanje','placeholder'=>'THE QUESTION...','style'=>'border:none']); ?>
+
+    <div id="pitanje_linija"></div>
+    <div id="prvi">1.</div>
+    <?php echo Form::text('answer1',null,['id'=>'prvi_odgovor','placeholder'=>'answer']); ?>
+
+    <div id="prvi_odgovor_linija"></div>
+    <?php echo Form::checkbox('correct1',1,null,['style'=>'position:relative; left:450px; top:-25px']); ?>
+
+
+    <div id="drugi">2.</div>
+    <?php echo Form::text('answer2',null,['id'=>'drugi_odgovor','placeholder'=>'answer']); ?>
+
+    <div id="drugi_odgovor_linija"></div>
+    <?php echo Form::checkbox('correct2',1,null,['style'=>'position:relative; left:450px; top:-55px']); ?>
+
+
+    <div id="treci">3.</div>
+    <?php echo Form::text('answer3',null,['id'=>'treci_odgovor','placeholder'=>'answer']); ?>
+
+    <div id="treci_odgovor_linija"></div>
+    <?php echo Form::checkbox('correct3',1,null,['style'=>'position:relative; left:450px; top:-85px']); ?>
+
+
+    <div id="cetvrti">4.</div>
+    <?php echo Form::text('answer4',null,['id'=>'cetvrti_odgovor','placeholder'=>'answer']); ?>
+
+    <div id="cetvrti_odgovor_linija"></div>
+    <?php echo Form::checkbox('correct4',1,null,['style'=>'position:relative; left:450px; top:-115px']); ?>
+
+
+    <div id="peti">5.</div>
+    <?php echo Form::text('answer5',null,['id'=>'peti_odgovor','placeholder'=>'answer']); ?>
+
+    <div id="peti_odgovor_linija"></div>
+    <?php echo Form::checkbox('correct5',1,null,['style'=>'position:relative; left:450px; top:-155px']); ?>
+
+    <div id="kraj_odgovora_linija"></div>
+    <div id="kraj_linija"></div>
+</div>
+<button type="submit" class="addqu" style="cursor: pointer;  position:absolute; left:20.2%; top:41.5%; width:1293px; height:254px;"><?php echo Html::image('img/Addqu.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:1293px; height:254px;']); ?></button>
+<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
+    <?php if(count($errors) > 0): ?>
+        <script>swal("Whoops!!","There were some problems with your input.<?php foreach ($errors->all() as $error)
+    {
+        echo e($error);
+    }
+    ?>","error")</script>
+    <?php endif; ?>
+<?php if(Session::has('question_or_finish')): ?>
+    <script>
+    swal({
+                title: "You successfully made a question!",
+                text: "Do you want to make another question, or do you wish to finish the test and make a course?",
+                type: "success",
+                showCancelButton: true,
+                cancelButtonText: "Make another question!",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Finish course!",
+                allowEscapeKey: false,
+                allowOutsideClick:false
+            },
+            function(isConfirm){
+                if (isConfirm)
+                {
+                    window.location = "<?php echo e(url('/main')); ?>";
+                }
+            });
+    </script>
+<?php endif; ?>
+</body>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

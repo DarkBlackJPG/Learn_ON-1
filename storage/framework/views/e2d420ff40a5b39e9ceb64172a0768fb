@@ -1,0 +1,163 @@
+<?php $__env->startSection('content'); ?>
+   <body style="background-color: #000000; margin: 0px;opacity:.95;overflow:auto; min-width: 1280px; width:100%" id="abc" onresize="resize()">
+    <div id="Container" style="background-color: #ee2033">
+        <div id="Hhh" style="background-color: #5e5e5e;border-bottom: solid #ee2033 10px; " >
+
+            <div class="header" style="padding-top: 10px;font-family: 'Porter', cursive; margin:0 20px 0 0;">
+                <div style="bottom:0px; position: relative;">
+                    <a class="btn btn-link" href="<?php echo e(url('/auth/register')); ?>" style=" font-size: 14pt; margin-left:20px; margin-top:20px; bottom: 0px;float: left; font-family: 'Porter', cursive; text-decoration: none;" id="botmz">Register</a>
+                </div>
+                <div id="about_us" style="float:right;margin-right: 200px; background-color: transparent;" >
+
+                    <nav>
+                        <ul>
+                            <li id="login">
+                                <a id="login-trigger" >
+                                    Log in
+                                </a>
+                                <div id="login-content">
+                                    <?php if(session('status')): ?>
+                                        <div class="alert alert-success">
+                                            <?php echo e(session('status')); ?>
+
+                                        </div>
+                                    <?php endif; ?>
+                        <?php if(count($errors) > 0): ?>
+                            <div class="alert alert-danger">
+                                <strong style="color:red;">Whoops!!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    <?php foreach($errors->all() as $error): ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+
+                            <form method="post" action="<?php echo e(url('/auth/login')); ?>" role="form">
+                                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                                <fieldset id="inputs" style="border-style: none; padding: 0px;">
+                                    <input id="email" type="email" name="email" value="<?php echo e(old('email')); ?>" placeholder="Your email address"  required>
+                                    <input id="password" type="password" name="password" placeholder="Password" required>
+                                </fieldset>
+                                <fieldset id="actions" style="text-align:center;align: center;" >
+                                    <input type="submit" id="submit" class="btn btn-primary" value="Log In" style="margin-left: 60px;">
+                                    <br/>
+                                    <label><input type="checkbox" style="margin-left: 15px;"> Remember me</label>
+                                    <br/>
+
+                                </fieldset>
+                                <nav class="cl-effect-1">
+                                    <a class="btn btn-link" href="<?php echo e(url('/password/email')); ?>" id="F_pass" style="margin-left: 25px;">Forgot Password</a>
+
+                                </nav>
+
+                            </form>
+                                </div>
+                            </li>
+                            <li id="abut">
+                                <a id="about-trigger">About Us</a>
+                                <div id="about-content" style="max-width:250px;white-space:normal">
+                                    <h1>Learn and... STUFF</h1>
+                                    <br/>
+                                    How we were founded? Well, one pretty little day, when the Sun was shining bright, Blesic farted.
+                                </div>
+
+
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h1>
+        <div id="mext">
+            <div style="margin-left: 9%;font-size: 80pt;">
+                LEARNING<br/>
+            </div>
+            <div style="margin-left: 9%; font-size: 60pt">
+                IS <u><i>FUN</i></u><br/>
+            </div>
+            <div style="margin-left: 9%;font-size: 55pt;color: #ffffff">
+                WHY <span style="font-size: 50pt">NOT</span>
+            </div>
+            <div style="margin-left: 9%;font-size: 65pt;color: #ffffff">
+                MAKE IT<br/>
+            </div>
+            <div style="margin-left: 9%;font-size: 80pt; color:#ee2033; display: box; ">
+                EASIER?
+            </div>
+        </div>
+    </h1>
+    <div id="logo" style="top:5%;margin-top:8%;right:0;position: fixed" align="top">
+        <?php echo Html::image('img/Owl.svd'); ?>
+
+    </div>
+    </div>
+    </div>
+    <?php if(Session::has('flash_message')): ?>
+        <script>alert('We send you an email to verify the existence of your email address!');</script>
+    <?php endif; ?>
+    <script type="text/javascript">
+        var w=window.innerWidth;
+        var h=window.innerHeight;
+        var nw=w;
+        var nh=h-10;
+        document.getElementById("Hhh").style.height=nh+"px";
+        document.getElementById("Hhh").style.width=nw+"px";
+        var wf=window.innerWidth;
+        var hf=window.innerHeight;
+        var nwf=wf;
+        var nhf=hf-100;
+        document.getElementById("footer").style.height=nhf+"px";
+        document.getElementById("footer").style.width=nwf+"px";
+        var sendButton=document.getElementById("send")
+        sendButton.disabled=true;
+        function resize(){
+            var w=window.innerWidth;
+            var h=window.innerHeight;
+            var nw=w;
+            var nh=h-10;
+            document.getElementById("Hhh").style.height=nh+"px";
+            document.getElementById("Hhh").style.width=nw+"px";
+            var wf=window.innerWidth;
+            var hf=window.innerHeight;
+            var nwf=wf  ;
+            var nhf=hf-100;
+            document.getElementById("footer").style.height=nhf+"px";
+            document.getElementById("footer").style.width=nwf+"px";
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#login-trigger').click(function(){
+                $(this).next('#login-content').slideToggle();
+                $(this).toggleClass('active');
+            })
+        });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#about-trigger').click(function(){
+                $(this).next('#about-content').slideToggle();
+                $(this).toggleClass('active');
+            })
+        });
+    </script>
+    </body>
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

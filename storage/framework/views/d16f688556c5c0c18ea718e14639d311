@@ -1,0 +1,104 @@
+<?php $__env->startSection('content'); ?>
+	<?php echo Form::model($course=new \App\Course, ['url'=>'courses', 'files'=>true]); ?>
+
+<body >
+<div id="gornjalinija"></div>
+<div id="learn"><a href="/main">LEARN_ON</a></div>
+<div id="podvucena"></div>
+<div style="width:35%; left:46%; position:absolute;">
+    <section style="font-size:2em; font-family: Intro_Bold"> - COURSE EDITOR - </section>
+</div>
+<?php echo $__env->make('partials._levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div id="polje4">
+    <div class="width" id="markup">
+        <?php echo Form::open(['url'=>'main','files'=>true]); ?>
+
+        <div class="form-group">
+            <?php echo Form::text('title',null,['class' => 'width','id'=>'course_title','placeholder'=>'COURSE TITLE HERE...','autocomplete'=>'off']); ?>
+
+        </div>
+        <div id="wrapping_content" >
+            <div>
+                <div id="thumbnail">
+                    <img src="/img/courses/default.jpg" style="height: 190px; width: 350px;" alt="error"/>
+                </div>
+                <section style="position:relative; top:30px;display: inline">
+                    <div class="form-group" style="position:relative; left: 5%;">
+                        <?php echo Form::label('published_at','Publish on:'); ?>
+
+                        <?php echo Form::input('date','published_at',$course->published_at->format('Y-m-d'),['id'=>'filename','class'=>'form-control']); ?>
+
+                    </div>
+                    <div style="position: relative; top: 10px; left:60px;">
+                    Choose a thumbnail: <?php echo Form::file('thumbnail',null,['accept'=>'image/*']); ?>
+
+                    </div>
+                    <div class="form-group" style="position:relative; top:20px; left:5%;">
+                        <?php echo Form::label('tag_list','Category:'); ?>
+
+                        <?php echo Form::select('tag_list[]',$tags,null,['id'=>'tag_list','class'=>'form-control','style'=>'font-family:Exo_bold; width:250px', 'placeholder' =>'Choose Category...']); ?>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <hr class="width" style="position:relative; top:115px; left: -24%; height: 2px; background-color: black; ">
+        <div id="bottom_content">
+            <div>
+                <div class="form-group">
+                    <?php echo Form::textarea('body',null,['class' => 'width','id'=>'text_area', 'placeholder'=>'Description...']); ?>
+
+                </div>
+                <?php echo Form::submit('CREATE COURSE',['class' => 'btn btn-primary form-control','name'=>'sub', 'id'=>'CFL_button']); ?>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo Form::close(); ?>
+
+<?php $__env->startSection('footer'); ?>
+    <?php if(count($errors) > 0): ?>
+        <script>swal("Whoops!!","There were some problems with your input.<?php foreach ($errors->all() as $error)
+    {
+        echo e($error);
+    }
+    ?>","error")</script>
+    <?php endif; ?>
+<script>
+    $('#tag_list').select2({
+        placeholder:'Choose tags'
+    });
+    $(".js-example-theme-multiple").select2({
+        theme: "classic"
+    });
+</script>
+    <script>
+        $('[name="sub"]').on('click',function(e){
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to change the course until it is published",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, create course!",
+                        allowEscapeKey: true,
+                        allowOutsideClick:false
+                    },
+                    function(isConfirm){
+                        if (isConfirm)
+                        {
+                            form.submit(), function(markup)
+                            {
+                                $('#markup').html(markup);
+                            };
+                        }
+                    });})
+    </script>
+</body>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

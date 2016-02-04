@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+    <link href="<?php echo asset('CSS.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <link href="<?php echo asset('jqbar.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<?php echo asset('jQuery/jquery-2.1.4.js'); ?>"></script>
+    <?php echo Html::script('jQuery/jqbar.js'); ?>
+
+    <?php echo Html::script('jQuery/jquery.circle-diagram.js'); ?>
+
+    <?php echo Html::script('jQuery/main.js'); ?>
+
+    <script type="text/javascript" src="<?php echo asset('sweetalert/sweetalert.min.js'); ?>"></script>
+    <link href="<?php echo asset('sweetalert/sweetalert.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+
+    <title>Learn_ON</title>
+</head>
+<body>
+<div id="gornjalinija"></div>
+<div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+<div id="podvucena"></div>
+<?php echo $__env->make('partials._levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div id="poljeF"  style="font-family: Exo">
+    <?php if($user->level==0): ?>
+        <?php echo Form::open(['url'=>'admin_user', 'method'=>'POST']); ?>
+
+        <?php echo Form::hidden('id', $user->id); ?>
+
+        <?php echo Form::submit('Make Admin',['class'=>'btn1','id'=>'make_admin','style'=>'width:80px; left:50%;top:187px; position:absolute']); ?>
+
+        <?php echo Form::close(); ?>
+
+    <?php else: ?>
+        <?php echo Form::open(['url'=>'user_admin', 'method'=>'POST']); ?>
+
+        <?php echo Form::hidden('id', $user->id); ?>
+
+        <?php echo Form::submit('Make User',['class'=>'btn1','id'=>'make_user','style'=>'width:80px; left:50%;top:187px; position:absolute']); ?>
+
+        <?php echo Form::close(); ?>
+
+    <?php endif; ?>
+
+    <?php echo Form::open(['url'=>'admin_delete_user', 'method'=>'POST']); ?>
+
+    <?php echo Form::hidden('id', $user->id); ?>
+
+        <button type="submit" class="addqu" id="del" style="cursor: pointer; position:absolute; height:30px; width:100px; left:0.5%; top:1%; "><?php echo Html::image('img/delete.png','Error404',['class'=>'addqu','style'=>' position:absolute; height:30px; width:100px; left:0; top:0%;  ']); ?></button>
+        <?php echo Form::close(); ?>
+
+
+    <img src="/img/users/<?php echo e($user->profile); ?>" alt="ERROR-404" style="border-radius: 50%; object-fit: cover; width:200px; height:200px; left:5%; top:15px;  position:relative;">
+    <div id="text4" style="padding-left: 25px; left:20%;top:3%; position:absolute">E-mail:<?php echo e($user->email); ?><a href="#" id="p_link1" style="font-size:15px" class="link"> [edit]</a>
+        <?php echo Form::open(['url'=>'admin_edit_email',  'method'=>'POST','id'=>'f_1']); ?>
+
+        <?php echo Form::hidden('id', $user->id); ?>
+
+        <?php echo Form::text('email',null,['class' => 'form-control','placeholder'=> 'Enter new email']); ?>
+
+        <?php echo Form::text('email_confirmation',null,['class' => 'form-control','placeholder'=> 'Re-Enter new email']); ?>
+
+        <?php echo Form::submit('Edit', ['class'=>'btn1','style'=>'width:30px;']); ?>
+
+        <?php echo Form::close(); ?>
+
+    </div>
+    <div id="text4" style="padding-left: 25px; left:20%;top:35%; position:absolute">Username:<?php echo e($user->username); ?> <a href="#" id="p_link2" style="font-size:15px" class="link"> [edit]</a>
+        <?php echo Form::open(['url'=>'admin_edit_username',  'method'=>'POST','id'=>'f_2']); ?>
+
+        <?php echo Form::hidden('id', $user->id); ?>
+
+        <?php echo Form::text('username',null,['class' => 'form-control','placeholder'=> 'Enter new username']); ?>
+
+        <?php echo Form::text('username_confirmation',null,['class' => 'form-control','placeholder'=> 'Re-Enter new username']); ?>
+
+        <?php echo Form::submit('Edit', ['class'=>'btn1','style'=>'width:30px;']); ?>
+
+        <?php echo Form::close(); ?>
+
+    </div>
+    <div id="text4" style="padding-left: 25px; left:20%;top:66%; position:absolute">
+        Password <a href="#" id="p_link3" style="font-size:15px" class="link"> [edit]</a>
+        <?php echo Form::open(['url'=>'admin_edit_pass',  'method'=>'POST','id'=>'f_3']); ?>
+
+        <?php echo Form::hidden('id', $user->id); ?>
+
+        <?php echo Form::password('password',['class' => 'form-control','placeholder'=> 'Enter new password']); ?>
+
+        <?php echo Form::password('password_confirmation',['class' => 'form-control','placeholder'=> 'Re-enter new password']); ?>
+
+        <?php echo Form::submit('Edit', ['class'=>'btn1','style'=>'width:30px;']); ?>
+
+        <?php echo Form::close(); ?>
+
+    </div>
+    <div id="text4" style=" overflow:hidden; width: 450px; height: 200px; left:65%;top:3%; position:absolute">
+        <?php if(count($errors) > 0): ?>
+            <div class="alert alert-danger">
+                <strong style="color:red;">Whoops!!</strong> There were some problems with your input.<br>
+                <ul>
+                    <?php foreach($errors->all() as $error): ?>
+                        <li><?php echo e($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div id="poljeF2"  style="font-family:Intro_Bold; min-height: 375px;"><br>
+    <b style="padding-left: 25px; color:red; font-size:2em">-ONGOING COURSES: <?php echo e(App\Enroll::where('user_id',$user->id)->ongoing()->count()); ?></b>
+    <?php
+    $enrolls=App\Enroll::where('user_id',$user->id)->ongoing()->get();
+    ?>
+    <ul style="margin-left:30px; font-size:2em">
+        <?php foreach($enrolls as $ongoing): ?>
+            <li><a href="courses/<?php echo e($ongoing->course_id); ?>" class="link"><?php echo e(App\Course::find($ongoing->course_id)->title); ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+    <b style="padding-left: 25px; color:red; font-size:2em;">-COURSES FINISHED: <?php echo e(App\Enroll::where('user_id',$user->id)->finished()->count()); ?></b>
+    <?php
+    $enrolls=App\Enroll::where('user_id',$user->id)->finished()->get();
+    ?>
+    <?php foreach($enrolls as $finished): ?>
+        <div id="bar-<?php echo e($finished->id); ?>" style="top:0; left:25px; position:relative;"></div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#bar-<?php echo e($finished->id); ?>').jqbar({ label: '<?php echo e(App\Course::find($finished->course_id)->title); ?>', value: <?php if($finished->points == 0): ?> <?php echo e(0); ?> <?php else: ?> <?php echo e(100/( App\Course::find($finished->course_id)->test()->first()->points / $finished->points )); ?> <?php endif; ?>, barColor: 'red', orientation: 'h', barWidth: 20});
+            });
+        </script>
+    <?php endforeach; ?>
+
+</div>
+<div style="position: absolute; font-family:Intro_Bold; color:red; font-size:30px; left:1114px; top:345px">SUCCESS RATE</div>
+
+<?php
+$count=App\Enroll::where('user_id',$user->id)->finished()->count();
+$percent=0;
+foreach($enrolls as $finished)
+{
+    if($finished->points == 0)
+        $percent+=0;
+    else
+        $percent+=100/( App\Course::find($finished->course_id)->test()->first()->points / $finished->points );
+}
+if($count == 0)
+    $percent=0;
+else
+    $percent/=$count;
+$percent=round($percent, 1);
+?>
+<div id="diagram-id-2" class="diagram" style="left:1070px; font-family:Intro_Bold; top:370px; position:absolute;"
+     data-circle-diagram='{
+			"percent": "<?php echo e($percent); ?>%",
+			"size": "280",
+			"borderWidth": "4",
+			"bgFill": "#cacaca",
+			"frFill": "red",
+			"textSize": "90",
+			"textColor": "red"
+			}'>
+
+</div>
+
+
+
+<?php echo $__env->make('partials._edit_all_users_swal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+
+<script>
+    $( "#p_link1" ).click(function() {
+        $( "#f_1" ).slideToggle( "fast", function() {
+        });
+    });
+
+    $( "#p_link2" ).click(function() {
+        $( "#f_2" ).slideToggle( "fast", function() {
+        });
+    });
+
+    $( "#p_link3" ).click(function() {
+        $( "#f_3" ).slideToggle( "fast", function() {
+        });
+    });
+</script>
+</body>
+</html>

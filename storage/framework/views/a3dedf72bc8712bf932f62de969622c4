@@ -1,0 +1,65 @@
+<?php $__env->startSection('content'); ?>
+    <body>
+    <div id="gornjalinija"></div>
+    <div id="learn"><a href="<?php echo e(url('main')); ?>">LEARN_ON</a></div>
+    <div id="podvucena"></div>
+    <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
+    <?php echo Form::open(['url'=>'search']); ?>
+
+    <?php echo Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search courses','id'=>'search_bar']); ?>
+
+    <?php echo Form::submit('&#128270;', ['class'=>'btn1','style'=>'width:5%;left:71%; top:1.5%;position:absolute;']); ?>
+
+    <?php echo Form::close(); ?>
+
+    <?php echo $__env->make('partials/_levi_meni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <a href="<?php echo e(url('main')); ?>">
+        <div id="mainlibrary" class="nav" style="z-index:2;">
+            <div style="position:relative;padding-top:6.5px;">
+                <b>COURSE LIBRARY</b>
+            </div>
+        </div>
+    </a>
+    <a href="#" onclick="showHide('polje')"><div id="categories"><div style="position:relative;padding-top:6.5px;">
+                <b>CATEGORIES</b>
+            </div></div></a>
+    <div id="polje">
+        <?php echo $__env->make('partials._cats_slike', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div id="crvenalinija" style="position:absolute;width:49.7%;height:11px;background-color:red;top:-10px;left:673px;"></div>
+    </div>
+    <div id="polje2">
+    </div>
+            <!-- scripts
+<script type="text/javascript">
+        var z = 1;
+        function showHide(id) {
+            document.getElementById(id).style.zIndex = z++;
+            document.getElementsByTagName('nav').style.zIndex = z++;
+        }
+    </script>
+    <script type="text/javascript">
+        var z = 1;
+        function showHide(id) {
+            document.getElementById(id).style.zIndex = z++;
+            document.getElementsByTagName('nav').style.zIndex = z++;
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#categories').click(function(){
+                $('#crvenalinija').animate({left:"50.30%"});
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#mainlibrary').click(function(){
+                $('#crvenalinija').animate({left:"0%"});
+            });
+        });
+    </script>-->
+
+    </body>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
