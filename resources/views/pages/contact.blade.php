@@ -45,5 +45,6 @@
 			CKEDITOR.replace ('about_content');
 		</script>
 	@endif
+	
 	</body>
 @stop

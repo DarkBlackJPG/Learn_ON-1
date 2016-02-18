@@ -2,34 +2,70 @@
 @section('content')
     <body style="overflow: hidden">
     <div id="gornjalinija"></div>
+    <div id="hamburger_menu">
+                <div id="nav-icon3">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                    <div id="menimeni">
+                              MENU
+                    </div>
+                </div>
+            </div>
     <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
     <div id="podvucena"></div>
     {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search courses','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
     @include('partials/_levi_meni')
+    <div id="content_wrapper">
+        <div id="link_container">
         <a href="#" onclick="showHide('polje2')">
-            <div id="mainlibrary" class="nav" style="z-index:2; border-bottom: solid 9px red ;">
-                <div style="position:relative;padding-top:6.5px;">
+        
+            <div id="mainlibrary" class="nav" style="z-index:2; border-bottom: solid 9px red ;color:#ee2033;">
+                
                     <b>COURSE LIBRARY</b>
-                </div>
+               
                 </div>
         </a>
-        <a href="{{ url('categories') }}"><div id="categories"><div style="position:relative;padding-top:6.5px;">
+        <a href="{{ url('categories') }}">
+        <div id="categories">
                     <b>CATEGORIES</b>
-                </div></div></a>
+                </div></a></div>
+                
     <div id="polje2">
      @foreach ($courses as $course)
-            <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
+            <div class="course_wrapper" >
                 <course >
-                    <div id="video_" style="float: left;">{!! Html::image('img/courses/'.$course->thumbnail,null,['style'=>'width:300px; height:200px;left:2%;padding-top:1%; position:relative;']) !!}</div>
-                    <div style="align: left;" >
-                        <div class="maintitl{{ $course->id }}" id="imev"><b> <a class="link" href="{{url('courses', $course->id) }}">{{$course->title}}</a></b></div>
+                    <div id="thumbnail">
+                    {!! Html::image('img/courses/'.$course->thumbnail,null) !!}
+                    </div>
+                    <div id="course_info" >
+                        <div class="maintitl{{ $course->id }}" id="imev">
+                        <b> <a class="link" href="{{url('courses', $course->id) }}">{{$course->title}}</a></b></div>
                         <div class="mainopis{{ $course->id }}" id="opisv">{{$course->body}}</div>
                         <div id="datumv">Published {{$course->published_at->diffForHumans()}}</div>
                         <div id="opisv">by {{\App\User::find($course->user_id)->username}}</div>
-                        <div id="categoryv"><i>Category: @foreach($course->tags as $tag)<a class="btn btn-link" id="tag_button" style=" font-size: 21pt;bottom: 0px;font-family: 'Exo'; text-decoration: none;" href="{{url('/tags/')}}/{{$tag->name}}"><b>{{$tag->name}}</b></a> @endforeach </i>
-                        @if(\Auth::User()->level==1) <a href="courses/{{$course->id}}/edit">{!! Html::image('img/edit.png',null,['style'=>'height:30px; position: absolute; left: 900px; top:6px; width:30px']) !!}<div style="position: absolute; color: red; top: 0px;left:940px ">EDIT</div> </a></div> @else </div> @endif
-                    </div>
+                        <div id="categoryv">
+                        <i>
+                        Category: @foreach($course->tags as $tag)
+                        <a class="btn btn-link" id="tag_button" href="{{url('/tags/')}}/{{$tag->name}}">
+                        <b>{{$tag->name}}</b></a>
+                         @endforeach
+                        </i>
+                        @if(\Auth::User()->level==1)
+                        <br/>
+                        <a href="courses/{{$course->id}}/edit" id="edit_button">
+                        {!! Html::image('img/edit.png',null) !!}<div>EDIT</div></a>
+                        
+                        
+                        </div>
+                        @else
+                         </div>
+                        @endif
+                    
                 </course>
+                </div>
                 <br>
             </div>
             <script>
@@ -62,7 +98,7 @@
             timer:2000,
         })</script>
     @endif
-
+</div>
     <script>
         var timer;
         function up()
@@ -83,5 +119,32 @@
             clearTimeout(timer);
         }
     </script>
+    <script type="text/javascript">
+$(document).ready(function(){
+    var height = $('#gornjalinija').height();
+        $('#desnimeni').height( $(window).height() - height )
+        $(window).resize(function(){$('#slideshow').height( $(window).height() - height )
+        $('#desnimeni').height( $(window).height() - height )});
+        
+        });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#nav-icon3').click(function(){
+            $(this).toggleClass('open');
+        });
+    });
+</script>
+<script type="text/javascript">
+   $(document).ready(function(){
+       var width = $('#desnimeni').width()+20;
+       $('#content_wrapper').width($(window).width() - width);
+       $('#content_wrapper').height($(window).height()-119);
+       $(window).resize(function(){
+        $('#content_wrapper').height($(window).height()-119);
+        $('#content_wrapper').width($(window).width() - width);});
+
+    });
+</script>
     </body>
 @endsection

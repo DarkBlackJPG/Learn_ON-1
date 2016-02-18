@@ -5,7 +5,7 @@
     <div id="Container1" style="background-color: red">
         <div id="Hhh" style="background-color: #5e5e5e;border-bottom: solid #ee2033 10px" >
             <div class="header" style="padding-top: 10px;font-family: 'Porter', cursive; margin:0 20px 0 0;">
-                <div id="about_us" style="float:right;margin-right: 250px; background-color: transparent;" >
+                <div id="about_us" style="float:right; background-color: transparent;" >
                     <nav>
                         <ul>
                             <li id="login">
@@ -27,7 +27,7 @@
             <br/>
             <div id="form_password_rex" style="margin-top: 15%">
 
-                                        <form role="form" method="POST" action="{{ url('/password/reset') }}" id="form2" name="form" style="display: block; padding-bottom: 20px; padding-top: 10px;margin-left: 37%; margin-top: 3%;position: absolute">
+                                        <form role="form" method="POST" action="{{ url('/password/reset') }}" id="form2" name="form">
 
                                             <h2>PASSWORD RECOVERY &#9851</h2>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

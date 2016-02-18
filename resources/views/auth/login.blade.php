@@ -9,7 +9,7 @@
                 <div style="bottom:0px; position: relative;">
                     <a class="btn btn-link" href="{{ url('/auth/register') }}" style=" font-size: 14pt; margin-left:20px; margin-top:20px; bottom: 0px;float: left; font-family: 'Porter', cursive; text-decoration: none;" id="botmz">Register</a>
                 </div>
-                <div id="about_us" style="float:right;margin-right: 200px; background-color: transparent;" >
+                <div id="about_us" style="float:right; background-color: transparent;" >
 
                     <nav>
                         <ul>
@@ -40,10 +40,10 @@
                                     <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Your email address"  required>
                                     <input id="password" type="password" name="password" placeholder="Password" required>
                                 </fieldset>
-                                <fieldset id="actions" style="text-align:center;align: center;" >
+                                <fieldset id="actions" style="text-align:center;" >
                                     <input type="submit" id="submit" class="btn btn-primary" value="Log In" style="margin-left: 60px;">
                                     <br/>
-                                    <label><input type="checkbox" style="margin-left: 15px;"> Remember me</label>
+                                    <label><input type="checkbox" style="margin-left:30px;"> Remember me</label>
                                     <br/>
 
                                 </fieldset>
