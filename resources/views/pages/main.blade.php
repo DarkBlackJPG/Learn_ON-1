@@ -98,7 +98,6 @@
             timer:2000,
         })</script>
     @endif
-</div>
     <script>
         var timer;
         function up()

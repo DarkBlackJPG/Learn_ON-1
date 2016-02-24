@@ -6,7 +6,8 @@
     <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
     <div id="podvucena"></div>
     @include ('partials/_levi_meni')
-    <div id="content_container">
+    <div id="content_wrapper">
+    <div id="content_wrapper">
         <!-- Area for logo -->
         <div id="about_us_flex" >
             <div id="cont_elements">
@@ -23,7 +24,7 @@
                     <img src="brain_transparent.svg" style="width: 200px">
                 </div>
                 <div id="right_text">
-                    <div class="about-texts">- LEARNING -</div>
+                    <div class="about-texts">- LEARNIdsadassadNG -</div>
                 </div>
             </div>
         </div>
@@ -40,11 +41,12 @@
             <div id="about_us_content" contenteditable="false" >{!! $page->content !!}</div>
         @endif
     </div>
+  </div>
     @if(\Auth::User()->level==1)
         <script type="text/javascript">
             CKEDITOR.replace ('about_content');
         </script>
     @endif
-    
+
     </body>
 @stop

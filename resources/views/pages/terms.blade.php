@@ -6,7 +6,7 @@
     <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
     <div id="podvucena"></div>
     @include ('partials/_levi_meni')
-    <div id="content_container">
+    <div id="content_wrapper">
         <!-- Area for logo -->
         <div id="about_us_flex" >
             <div id="cont_elements">

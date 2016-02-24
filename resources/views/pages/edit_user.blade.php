@@ -107,10 +107,10 @@
 <div id="content_wrapper">
     <div id="poljeF"  style="font-family: Exo;">
         {!! Form::open(['url'=>'delete_account', 'method'=>'POST']) !!}
-        <button type="submit" class="addqu" id="del" style="cursor: pointer; position:absolute; height:30px; width:100px">{!! Html::image('img/delete.png','Error404',['class'=>'addqu','style'=>' position:absolute; height:30px; width:100px; left:0; top:0%;  ']) !!}</button>
+        <button type="submit" class="addqu" id="del" style="cursor: pointer;  height:30px; width:100px">{!! Html::image('img/delete.png','Error404',['class'=>'addqu','style'=>'  height:100%; width:100%; ']) !!}</button>
         {!! Form::close() !!}
-        <img src="img/users/{{$user->profile}}" alt="ERROR-404" style="border-radius: 50%; object-fit: cover; width:200px; height:200px; margin-left:110px; top:15px;float:left; ">
-        <div style="float:right;">
+        <img src="img/users/{{$user->profile}}" alt="ERROR-404" style="border-radius: 50%; object-fit: cover; width:200px; height:200px; margin:auto; top:20px;display:block ">
+        <div style="display:block;margin:auto;text-align:center">
         <div id="text4">E-mail:{{$user->email}}<a href="#" class="link" id="p_link1" style="font-size:15px"> [edit]</a>
             {!! Form::open(['url'=>'edit_email',  'method'=>'POST' ,'id'=>'f_1']) !!}
             {!! Form::text('email',null,['class' => 'form-control','placeholder'=> 'Enter new email']) !!}
@@ -151,7 +151,7 @@
     </div>
     <br/>
     <div id="poljeF2"  style="font-family:Intro_Bold;">
-      <div style="float:left;display:block;width:auto;height:auto">
+      <div id="left_info" >
         <b style=" color:red; font-size:2em">-ONGOING COURSES: {{ App\Enroll::where('user_id',$user->id)->ongoing()->count()}}</b>
         <?php
             $enrolls=App\Enroll::where('user_id',$user->id)->ongoing()->get();
@@ -174,7 +174,7 @@
                 </script>
             @endforeach
           </div>
-            <div id="success_wrapper">
+            <div id="success_wrapper" >
             <div style=" font-family:Intro_Bold; color:red; font-size:30px;">SUCCESS RATE</div>
 
             <?php
@@ -194,7 +194,7 @@
                         $percent=round($percent, 1);
             ?>
             <div style="height:auto;width:auto">
-            <div id="diagram-id-2" class="diagram" style=" font-family:Intro_Bold;"
+            <div id="diagram-id-2" class="diagram" style=" font-family:Intro_Bold;margin-top"
                  data-circle-diagram='{
               "percent": "{{ $percent }}%",
               "size": "250",

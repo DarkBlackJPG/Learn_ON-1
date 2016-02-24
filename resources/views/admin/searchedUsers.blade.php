@@ -1,11 +1,12 @@
 @if(count($searchUsers) >=1)
 @foreach ($searchUsers as $user)
-    <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
-        <user >
-            <div style="float: left;"><object data="img/users/{{$user->profile}}" type="image/png" style="border-radius: 50%; object-fit: cover; width:200px; height:200px;left:2%;padding-top:1%; position:relative;">
-                    <img src="img/avatar.png" style="width:200px; height:200px;left:2%;padding-top:1%; position:relative;"/>
+    <div style="display:flex;margin:auto " >
+        <user style="margin: auto">
+            <div style="float: left;margin-left:20px;margin-top:10px;">
+                <object data="img/users/{{$user->profile}}" type="image/png" style="border-radius: 50%; object-fit: cover; width:200px; height:200px;">
+                    <img src="img/avatar.png" style="width:150px; height:150px;"/>
                 </object> </div>
-            <div style="align: left;" ><br>
+            <div id="object_float" ><br>
                 <div id="imev"><b> <a href="{{url('users', $user->id) }}" class="link">{{$user->username}}</a></b></div>
                 <div id="opisv">{{$user->email}}</div>
                 <div id="datumv">Created {{$user->created_at->diffForHumans()}}</div>
@@ -15,12 +16,10 @@
     </div>
     <br/>
     <br/>
-    <br/>
-    <br/>
 @endforeach
 @else
-    <div style="margin-left:37%;position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
-        <h3 id="search_error1"> Whoops! </h3>
+    <div style="margin:auto;text-align: center   " >
+        <h3 id="search_error1" style="text-align: center"> Whoops! </h3>
         <h4 id="search_error2">No users found</h4>
     </div>
 @endif

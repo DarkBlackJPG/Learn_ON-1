@@ -8,28 +8,30 @@
     <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
     {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search users','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
     @include ('partials/_levi_meni')
-    <a href="#" onclick="showHide('polje2')">
-        <div id="mainlibrary" class="nav" style="z-index:2;  border-bottom: solid 9px red ;">
-            <div style="position:relative;padding-top:6.5px;">
-                <b>USERS</b>
-            </div>
-        </div>
-    </a>
-    <a href="{{ url('add_user') }}"><div id="categories"><div style="position:relative;padding-top:6.5px;">
-                <b>ADD USER</b>
-            </div></div></a>
-    <div id="polje">
-    </div>
+    <div id="content_wrapper">
+        <div id="link_container">
+        <a href="#" onclick="showHide('polje2')">
 
+            <div id="mainlibrary" class="nav" style="z-index:2; border-bottom: solid 9px red ;color:#ee2033;">
+
+                    <b>ALL USERS</b>
+
+                </div>
+        </a>
+        <a href="{{ url('add_user') }}">
+        <div id="categories">
+                    <b>CREATE USER</b>
+                </div></a></div>
     <div id="polje2">
 
         @foreach ($users as $user)
-            <div style="position: relative;max-width:1000px;padding-left:2%; padding-top: 2%; " >
-                <user >
-                    <div style="float: left;"><object data="img/users/{{$user->profile}}" type="image/png" style="border-radius: 50%; object-fit: cover; width:200px; height:200px;left:2%;padding-top:1%; position:relative;">
-                            <img src="img/avatar.png" style="width:200px; height:200px;left:2%;padding-top:1%; position:relative;"/>
+            <div style="display:flex;margin:auto " >
+                <user style="margin: auto">
+                    <div style="float: left;margin-left:20px;margin-top:10px;">
+                      <object data="img/users/{{$user->profile}}" type="image/png" style="border-radius: 50%; object-fit: cover; width:200px; height:200px;">
+                            <img src="img/avatar.png" style="width:150px; height:150px;"/>
                         </object> </div>
-                    <div style="align: left;" ><br>
+                    <div id="object_float" ><br>
                         <div id="imev"><b> <a href="{{url('users', $user->id) }}" class="link">{{$user->username}}</a></b></div>
                         <div id="opisv">{{$user->email}}</div>
                         <div id="datumv">Created {{$user->created_at->diffForHumans()}}</div>
@@ -47,6 +49,7 @@
                 </div>
             @endif
     </div>
+  </div>
     @if (Session::has('acc_deleted'))<script>swal({
             title:"Good job!",
             text:"You successfully deleted an account",
