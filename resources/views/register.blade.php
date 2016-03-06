@@ -5,6 +5,9 @@
     <div id="Container1" style="background-color: red">
         <div id="Hhh" style="background-color: #5e5e5e;border-bottom: solid #ee2033 10px" >
             <div class="header" style="padding-top: 10px;font-family: 'Porter', cursive; margin:0 20px 0 0;">
+                <div id="logo2"  align="top">
+                    {!!Html::image('img/Owl.svd')!!}
+                </div>
                 <div id="about_us" style="float:right; background-color: transparent;" >
                     <nav>
                         <ul>
@@ -27,7 +30,7 @@
                 </div>
             </div>
             <br/>
-            <div id="form_password_rex" style="margin-top: 10%">
+            <div id="form_password_rex">
 
 
                             <form action="#" id="form2" method="post" name="form">

@@ -60,6 +60,7 @@ trait RegistersUsers
             'email' => Input::get('email'),
             'password' => bcrypt(Input::get('password')),
             'profile' => 'avatar.png',
+            'chat_key' => str_random(30),
             'confirmation_code' => $confirmation_code
         ]);
 

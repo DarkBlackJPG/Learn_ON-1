@@ -2,66 +2,84 @@
 <script type="text/javascript" src="{!! asset('ckeditor-comment/ckeditor.js') !!}"></script>
 @section('content')
     <body style="overflow: hidden">
-    <div id="gornjalinija"></div>
-    <div id="learn"><a href="/main">LEARN_ON</a></div>
-    <div id="podvucena"></div>
-    <div style="width:80%; left:18.7%; top:15px; text-align:center; position:absolute;">
-        <section style="font-size:2em; font-family: Exo_Bold"> - {{$lecture->lecture_title}} - </section>
-        {!! Form::open(['url'=>'/quit/'.$course->id, 'method'=>'POST']) !!}
-        <button type="submit" class="addqu" id="del" style="cursor: pointer; position:absolute; height:45px; width:150px; left:90%; top:0%; ">{!! Html::image('img/quit.png','Error404',['class'=>'addqu','style'=>' position:absolute; height:45px; width:150px; left:0; top:0%;  ']) !!}</button>
-        {!! Form::close() !!}
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+        <section class="header_text" > - {{$lecture->lecture_title}} - </section>
+
     </div>
 
+</div>
     <!-- Levi meni -->
 
     <div id="desnimeni">
-        <div id="avatar">{!! Html::image('img/courses/'.$course->thumbnail,'Error 404',['style'=>'width:200px; height:134px; left:15%; top:20px;  position:relative;']) !!}</div>
-        <div id="titl" style="text-align: center;  width: 100%; height: 51px; padding-left:5px;  padding-top:25px;"><b  title="{{ $course->title }}" style="color:red; font-family:Intro_Bold; text-decoration: underline; margin-left:-12px;  font-size:20pt;">{{$course->title}}</b></div>
+        <div id="avatar">{!! Html::image('img/courses/'.$course->thumbnail,'Error 404') !!}</div>
+        <div id="titl" style="width:100%;text-align:center" ><b title="{{$course->title}}" style="color:red; font-family:Intro_Bold; text-decoration: underline;  font-size:1.5em;">{{$course->title}}</b></div>
+        {!! Form::open(['url'=>'/quit/'.$course->id, 'method'=>'POST', 'style' => 'text-align:center;margin-top:10px']) !!}
+        <button type="submit" class="addqu" id="del" style="cursor: pointer;margin: auto;">{!! Html::image('img/quit.png','Error404',['class'=>'addqu','style'=>'  height:25px; width:90px;  ']) !!}</button>
+        {!! Form::close() !!}
         <div style="position:relative; top: -30px">
             @foreach($course->lectures()->oldest('created_at')->get() as $lecturec)
             <div style="position:relative;">
-                <div id="account">{!! Html::image('img/paper.png','alt',['style'=>'width:50px; height:70px; left:12%;top:45px;  position:relative;']) !!}</div>
-                <div style="width:205px; font-family:Intro_Bold; left:30%; position:relative; font-size:130%; padding-bottom: -4%;"><a href="{{URL('lectures/'.$lecturec->id)}}" class="link">{{ $lecturec->lecture_title }}</a></div>
+                <div id="account">{!! Html::image('img/paper.png','alt',['style'=>'width:50px; height:70px; left:20px;top:45px;  position:relative;']) !!}</div>
+                <div style="width:205px; font-family:Intro_Bold; left:33%; position:relative; font-size:130%; padding-bottom: -4%;"><a href="{{URL('lectures/'.$lecturec->id)}}" class="link">{{ $lecturec->lecture_title }}</a></div>
             </div>
             @endforeach
             <div style="position:relative;">
                 <div id="account">{!! Html::image('img/test.png','alt',['style'=>'width:70px; height:70px; left:12%;top:45px;  position:relative;']) !!}</div>
                 <div style="font-family:Intro_Bold; left:35%; position:relative; font-size:150%; padding-bottom: -4%;"><a href="{{URL('exam/'.$course->id)}}" class="link">Test</a></div>
             </div>
+
         </div>
     <div id="linija"></div>
-    <div id="static">
-        <div style="position:relative; margin-top: -23px">
-            <div id="about_img">{!! Html::image('img/about.png','alt',['style'=>'margin-top:-1%; width:25px; height:25px; left:17%;top:35px;  position:relative;']) !!}</div>
-            <div id="about" style="padding-left: 90px; padding-top: 5px"><a href="{{URL('about')}}" class="link">About us</a></div>
+        <div id="static">
+            <div >
+                <div class="block" id="about_img">{!! Html::image('img/about.png','alt',['style'=>' width:25px; ']) !!}</div>
+                <div class="block" id="about"><a href="{{URL('about')}}" class="link">About us</a></div>
+            </div>
+            <div>
+                <div class="block" id="contact_img">{!! Html::image('img/contact.png','alt',['style'=>'width:25px;']) !!}</div>
+                <div class="block" id="contact"><a href="{{URL('contact')}}" class="link">Contacts</a></div>
+            </div>
+            <div >
+                <div class="block" id="help_img">{!! Html::image('img/help.png','alt',['style'=>' width:25px;']) !!}</div>
+                <div class="block" id="help"><a class="link" href="help">Help</a></div>
+            </div>
+            <div >
+                <div class="block" id="t&c_img">{!! Html::image('img/t&c.svg','alt',['style'=>'width:25px']) !!}</div>
+                <div class="block" id="t&c"><a href="{{URL('terms&conditions')}}" class="link">T & C</a></div>
+            </div>
         </div>
-        <div style="position:relative; margin-top: -13px;">
-            <div id="contact_img">{!! Html::image('img/contact.png','alt',['style'=>'margin-top:-1%; width:25px; height:25px; left:17%;top:35px;  position:relative;']) !!}</div>
-            <div id="contact" style="padding-left: 90px; padding-top: 5px"><a href="{{URL('contact')}}" class="link">Contacts</a></div>
-        </div>
-        <div style="position:relative; margin-top: -13px;">
-            <div id="help_img">{!! Html::image('img/help.png','alt',['style'=>'margin-top:-1%; width:25px; height:25px; left:17%;top:35px;  position:relative;']) !!}</div>
-            <div id="help" style="padding-left: 90px; padding-top: 5px"><a class="link" href="help">Help</a></div>
-        </div>
-        <div style="position:relative; margin-top: -13px;">
-            <div id="t&c_img">{!! Html::image('img/t&c.svg','alt',['style'=>'margin-top:-1%; width:25px; height:25px; left:17%;top:35px;  position:relative;']) !!}</div>
-            <div id="t&c" style="padding-left: 90px; padding-top: 5px"><a href="{{URL('terms&conditions')}}" class="link">Terms & Conditions</a></div>
-        </div>
-    </div>
     </div>
 
     <!-- End -->
-
+<div id="content_wrapper">
     <div id="polje4" style="overflow-x:hidden ">
-        <div style="position: relative; left:360px; top: 7px; max-width: 630px; font-size: 25px; font-family: Calibri; text-align: center">{{ $lecture->body }}</div>
+
+        <div style="position: relative; left:0%; top: 7px; max-width: 630px; font-size: 25px; font-family: Exo_bold; text-align: center">{{ $lecture->body }}</div>
         <div class="width" style="margin-top:15px; position:relative; width: 80%;  height: 2px; background-color: red; "></div>
-        <div style="position: relative; left:325px; margin-top:15px"><iframe width="700" height="845" src="/pdf/{{$lecture->pdf}}" frameborder="0"></iframe></div>
+        <div style="position: relative; left:20%; margin-top:15px"><iframe width="60%" height="845" src="/pdf/{{$lecture->pdf}}" frameborder="0"></iframe></div>
         @if($lecture->video)
             <div class="width" style="margin-top:15px; position:relative; width: 80%;  height: 2px; background-color: red; "></div>
-            <div style="position: relative; left:342px; margin-top:15px"><iframe width="650" height="366" src="{{$lecture->video}}" frameborder="0" allowfullscreen></iframe></div>
+            <div style="position: relative; left:20%; margin-top:15px"><iframe width="60%" height="366" src="{{$lecture->video}}" frameborder="0" allowfullscreen></iframe></div>
         @endif
         <div class="width" style="margin-top:15px; margin-bottom: 10px; position:relative; width: 80%;  height: 2px; background-color: red; "></div>
-        <div style="position: relative;  height: 300px; width:750px; left:300px; color: #808080; font-family: Calibri">
+        <div style="position: relative;  height: 300px; width:60%; left:20%; color: #808080; font-family: Calibri">
             {!! Form::open(['url'=>'/comment', 'method'=>'POST']) !!}
             Add a public comment...
             {!! Form::textarea('comment',null,['id'=>'comment-ckeditor','style'=>'position: relative;']) !!}
@@ -84,6 +102,7 @@
                 </div>
             @endforeach
         </div>
+    </div>
     </div>
     </body>
     @endsection
@@ -124,6 +143,16 @@
                         }
                     });})
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var height = $('#gornjalinija').height();
+            $('#desnimeni').height( $(window).height() - height )
+            $(window).resize(function(){$('#slideshow').height( $(window).height() - height )
+                $('#desnimeni').height( $(window).height() - height )});
+
+        });
+    </script>
+
     @if (Session::has('comment_deleted'))<script>swal({
             title:"Good job!",
             text:"The comment has been successfully deleted",

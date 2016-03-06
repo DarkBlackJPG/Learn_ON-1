@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'confirmation_code', 'profile' ];
+    protected $fillable = ['username', 'email', 'password', 'confirmation_code', 'profile' ,'chat_key'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -70,6 +70,27 @@ class User extends Model implements AuthenticatableContract,
         }
     }
 
+    public static function getSender($message)
+    {
+        $user=user::Where('id', $message->from_user_id)->first();
+        return $user;
+    }
 
+    public static function getReceiver($message)
+    {
+        $user=user::Where('id', $message->to_user_id)->first();
+        return $user;
+    }
+
+
+
+    public static function writeScript() {
+        echo "
+
+                            var channel = pusher.subscribe('" . \Auth::user()->chat_key . "');
+                            channel.bind('new-message', addMessage);
+
+        ";
+    }
 
 }

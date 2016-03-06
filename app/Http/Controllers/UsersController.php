@@ -88,6 +88,7 @@ class UsersController extends Controller
             $user= new User();
             $user->password=bcrypt($password);
             $user->email=$email;
+            $user->chat_key=str_random(30);
             $user->username=$username;
             $user->confirmed=1;
             $user->profile='avatar.png';

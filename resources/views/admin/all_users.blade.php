@@ -2,11 +2,25 @@
 
 @section('content')
     <body>
-    <div id="gornjalinija"></div>
-    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-    <div id="podvucena"></div>
-    <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
-    {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search users','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+        {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search all users','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
+    </div>
     @include ('partials/_levi_meni')
     <div id="content_wrapper">
         <div id="link_container">
@@ -26,8 +40,8 @@
 
         @foreach ($users as $user)
             <div style="display:flex;margin:auto " >
-                <user style="margin: auto">
-                    <div style="float: left;margin-left:20px;margin-top:10px;">
+                <user style="margin: auto; text-align: center">
+                    <div style="margin-left:20px;margin-top:10px;">
                       <object data="img/users/{{$user->profile}}" type="image/png" style="border-radius: 50%; object-fit: cover; width:200px; height:200px;">
                             <img src="img/avatar.png" style="width:150px; height:150px;"/>
                         </object> </div>

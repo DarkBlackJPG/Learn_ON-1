@@ -1,9 +1,25 @@
 @extends('app')
 @section('content')
     <body style="overflow: hidden">
-    <div id="gornjalinija"></div>
-    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-    <div id="podvucena"></div>
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+    </div>
     @include('partials/_levi_meni')
     <div id="content_wrapper">
     <a href="#" onclick="showHide('polje2')">
@@ -27,7 +43,7 @@
                         </div>
                         <div id="course_info" >
                             <div class="maintitl{{ $course->id }}" id="imev">
-                            <b> <a class="link" href="{{url('courses', $course->id) }}">{{$course->title}}</a></b></div>
+                            <b> <a class="link" href="{{url('redirecting', $course->id) }}">{{$course->title}}</a></b></div>
                             <div class="mainopis{{ $course->id }}" id="opisv">{{$course->body}}</div>
                             <div id="datumv">Published {{$course->published_at->diffForHumans()}}</div>
                             <div id="opisv">by {{\App\User::find($course->user_id)->username}}</div>
@@ -48,7 +64,9 @@
 
                              @endif
                              </div>
+                        </course>
                            </div>
+
                 <script>
                     $(document).ready(function() {
                         $(".mainopis{{ $course->id }}").dotdotdot();
@@ -56,6 +74,7 @@
                     });
                 </script>
                 @endforeach
+                        </div>
             @endif
 
         <!-- UNPUBLISHED -->
@@ -91,6 +110,7 @@
 
                      @endif
                      </div>
+                </course>
         <script>
             $(document).ready(function() {
                 $(".mainopis{{ $course->id }}").dotdotdot();
@@ -98,7 +118,7 @@
             });
         </script>
         @endforeach
-
+</div>
         @endif
 
         <!-- DONE COURSES -->
@@ -133,7 +153,10 @@
                         </div>
                          @endif
                          </div>
-                       </div>
+                    </course>
+
+
+
             <script>
                 $(document).ready(function() {
                     $(".mainopis{{ $course->id }}").dotdotdot();
@@ -141,7 +164,7 @@
                 });
             </script>
         @endforeach
-
+</div>
         @endif
 
     </div>

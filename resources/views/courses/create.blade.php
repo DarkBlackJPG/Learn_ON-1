@@ -3,49 +3,68 @@
 @section('content')
 	{!! Form::model($course=new \App\Course, ['url'=>'courses', 'files'=>true]) !!}
 <body style="overflow: hidden">
-<div id="gornjalinija"></div>
-<div id="learn"><a href="/main">LEARN_ON</a></div>
-<div id="podvucena"></div>
-<div style="width:35%; left:48.4%; position:absolute;">
-    <section style="font-size:2em; font-family: Intro_Bold"> - COURSE EDITOR - </section>
+<div id="gornjalinija">
+
+    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+    <div id="hamburger_menu">
+        <div id="nav-icon3">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <div id="menimeni">
+                MENU
+            </div>
+        </div>
+    </div>
+    <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+        <section class="header_text" > - COURSE EDITOR - </section>
+
 </div>
 @include('partials._levi_meni')
+<div id="content_wrapper">
 <div id="polje4">
     <div class="width" id="markup">
-        <div class="form-group">
+        <div class="form-group" style="text-align: center">
             {!! Form::text('title',null,['class' => 'width','id'=>'course_title','placeholder'=>'COURSE TITLE HERE...','autocomplete'=>'off']) !!}
         </div>
-        <div id="wrapping_content" >
-            <div>
+        <div id="wrapping_content">
+            <div style="height: auto;overflow: auto;">
                 <div id="thumbnail">
-                    <img src="/img/courses/default.jpg" style="height: 190px; width: 350px;" alt="error"/>
+                    <img src="/img/courses/default.jpg" style="height: 55%; width: 100%;" alt="error"/>
                 </div>
-                <section style="position:relative; top:30px;display: inline">
-                    <div class="form-group" style="position:relative; left: 5%;">
+                <div id="qbox" style="float: left">
+                <section>
+                    <div class="form-group" style="left: 5%;">
                         {!! Form::label('published_at','Publish on:') !!}
                         {!! Form::input('date','published_at',$course->published_at->format('Y-m-d'),['id'=>'filename','class'=>'form-control']) !!}
                     </div>
-                    <div style="position: relative; top: 10px; left:65px;">
+                    <div style=" top: 10px; left:20px;">
                     Choose a thumbnail: {!! Form::file('thumbnail',null,['accept'=>'image/*']) !!}
                     </div>
-                    <div class="form-group" style="position:relative; top:20px; left:5%;">
+                    <div class="form-group" style=" top:20px; left:5%;">
                         {!! Form::label('tag_list','Category:') !!}
                         {!! Form::select('tag_list[]',$tags,null,['id'=>'tag_list','class'=>'form-control','style'=>'font-family:Exo_bold; width:250px', 'placeholder' =>'Choose Category...']) !!}
                     </div>
                 </section>
+                    </div>
             </div>
         </div>
-        <hr class="width" style="position:relative; top:135px; width: 97.5%; left: -24%; height: 2px; background-color: black; ">
         <div id="bottom_content">
             <div>
-                <div class="form-group">
-                    {!! Form::textarea('body',null,['class' => 'width','id'=>'text_area', 'placeholder'=>'Description...']) !!}
-                </div>
-                <button type="submit" id="sub" class="addqu" style="cursor: pointer;  position:absolute; left:27px;  top:67%; width:1265px; height:254px;">{!! Html::image('img/create_course.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:1265px; height:254px;']) !!}</button>
+               <div class="form-group">
+                    {!! Form::textarea('body',null,['class' => 'width','id'=>'text_areaa', 'placeholder'=>'Description...']) !!}
+               </div>
+               </div>
+                <button type="submit" id="sub" class="addqu" style="cursor: pointer; width:230px; height:54px;">{!! Html::image('img/create_course.png','Error404',['class'=>'addqu','style'=>'  height:54px;']) !!}</button>
                 {!! Form::close() !!}
-            </div>
+
         </div>
     </div>
+</div>
 </div>
 {!!Form::close()!!}
 @endsection
@@ -57,7 +76,23 @@
     }
     ?>","error")</script>
     @endif
-<script>
+    <style>
+
+
+        #text_areaa
+        {
+
+            border: dashed red 2px  ;
+            height: 175px;
+            width:80%;
+            left:10%;
+            font-size: 1.5em;
+            resize: none;
+        }
+
+        </style>
+
+    <script>
     $('#tag_list').select2({
         placeholder:'Choose tags'
     });

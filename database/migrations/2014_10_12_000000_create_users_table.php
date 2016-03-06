@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('confirmation_code')->nullable();
             $table->string('profile')->default('avatar.png');
             $table->boolean('level')->deafult(0);
+            $table->string('chat_key', 30)->unique();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -16,9 +16,25 @@
     <title>Learn_ON</title>
 </head>
 <body>
-<div id="gornjalinija"></div>
-<div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-<div id="podvucena"></div>
+<div id="gornjalinija">
+
+    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+    <div id="hamburger_menu">
+        <div id="nav-icon3">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <div id="menimeni">
+                MENU
+            </div>
+        </div>
+    </div>
+    <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+</div>
 @include('partials._levi_meni')
 <div id="content_wrapper">
 <div id="poljeF"  style="font-family: Exo">
@@ -126,7 +142,7 @@
             $percent=round($percent, 1);
             ?>
             <div style="height:auto;width:auto">
-                <div id="diagram-id-2" class="diagram" style=" font-family:Intro_Bold;margin-top"
+                <div id="diagram-id-2" class="diagram" style=" font-family:Intro_Bold;"
                      data-circle-diagram='{
               "percent": "{{ $percent }}%",
               "size": "250",
@@ -160,5 +176,75 @@
         });
     });
 </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            var width = $('#desnimeni').width()+20;
+            $('#content_wrapper').width($(window).width() - width);
+            $('#content_wrapper').height($(window).height()-80);
+            $(window).resize(function(){
+                $('#content_wrapper').height($(window).height()-80);
+                $('#content_wrapper').width($(window).width() - width);
+            });
+            if ($(window).width() <= 800)
+            {
+                $('#content_wrapper').width($(window).width() - 20);
+                $('#content_wrapper').height($(window).height()-80);
+
+
+                $(window).resize(function () {
+                    $('#content_wrapper').height($(window).height() - 80);
+                    $('#content_wrapper').width($(window).width() - 20);
+                });
+
+
+            }
+            $(window).resize(function () {
+                if ($(window).width() <= 800)
+                {
+                    $('#content_wrapper').width($(window).width() - 20);
+                    $('#content_wrapper').height($(window).height()-80);
+
+
+                    $(window).resize(function () {
+                        $('#content_wrapper').height($(window).height() - 80);
+                        $('#content_wrapper').width($(window).width() - 20);
+                    });
+
+
+                }
+                if ($(window).width() > 800)
+                {
+                    var width = $('#desnimeni').width()+20;
+                    $('#content_wrapper').width($(window).width() - width);
+                    $('#content_wrapper').height($(window).height()-80);
+                    $(window).resize(function(){
+                        $('#content_wrapper').height($(window).height()-80);
+                        $('#content_wrapper').width($(window).width() - width);
+                    });
+
+
+                }
+            });
+
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#nav-icon3').click(function(){
+                $(this).toggleClass('open');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#hamburger_menu').click(function () {
+                $('#desnimeni').toggleClass('open');
+
+            });
+        });
+    </script>
 </body>
 </html>

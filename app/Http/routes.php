@@ -96,4 +96,6 @@ Route::post('search_lectures','PagesController@postSearchLecture');
 Route::get('library','PagesController@library');
 Route::get('library/{id}','PagesController@show');
 
+Route::controller('chat', 'ChatController');
+
 

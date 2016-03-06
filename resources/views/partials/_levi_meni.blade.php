@@ -51,7 +51,7 @@
         </div>
         <div >
             <div class="block" id="t&c_img">{!! Html::image('img/t&c.svg','alt',['style'=>'width:25px']) !!}</div>
-            <div class="block" id="t&c"><a href="{{URL('terms&conditions')}}" class="link">Terms & Conditions</a></div>
+            <div class="block" id="t&c"><a href="{{URL('terms&conditions')}}" class="link">T & C</a></div>
         </div>
     </div>
 </div>
@@ -68,9 +68,13 @@ $(document).ready(function(){
    $(document).ready(function(){
        var width = $('#desnimeni').width()+20;
        $('#content_wrapper').width($(window).width() - width);
-       $('#content_wrapper').height($(window).height()-119);
+       if($(window).width()<=800)
+       {
+           $('#content_wrapper').width($(window).width() - 20);
+       }
+       $('#content_wrapper').height($(window).height()-80);
        $(window).resize(function(){
-        $('#content_wrapper').height($(window).height()-119);
+        $('#content_wrapper').height($(window).height()-80);
         $('#content_wrapper').width($(window).width() - width);});
 
     });

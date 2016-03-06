@@ -2,10 +2,25 @@
 
 @section('content')
     <body>
-    <div id="gornjalinija"></div>
-    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-    <div id="podvucena"></div>
-    {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search courses','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+        {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search courses','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
+    </div>
     {!! Form::hidden('tag',$tag->id,['id'=>'tag']) !!}
     @include('partials/_levi_meni')
     <div id="content_wrapper">
@@ -25,8 +40,8 @@
 
         <div id="polje2">
         @if (count($courses) == 0)
-            <div>
-                <h3 id="search_error1"> Whoops! </h3>
+            <div style="width: 100%;height: auto;text-align: center">
+                <h3 id="search_error1" style="text-align: center"> Whoops! </h3>
                 <h4 id="search_error2">No courses found</h4>
             </div>
         @elseif (count($courses) >= 1)
@@ -72,12 +87,6 @@
     </script>
     <div style="height: 5px; background-color:#EBEBEB; width: 100%"></div>
             @endforeach
-                @if ($courses->lastPage() > 1)
-                    <div style="position: relative; margin-top: 30px; margin-bottom: 30px;">
-                        <a href="{{ $courses->url($courses->currentPage()-1) }}" id="page[{{$courses->currentPage()-1}}]" style="color: red; font-family: Intro_Bold; position: absolute; left:20px;" @if($courses->currentPage() == 1) onclick="return false" @endif>{!! Html::image('img/prev.png','error 404',['style'=>'width:30px; height:30px; top:10px']) !!} PREVIOUS</a>
-                        <a href="{{ $courses->url($courses->currentPage()+1) }}" id="page[{{$courses->currentPage()+1}}]" style="color: red; font-family: Intro_Bold; position: absolute; right:20px;" @if($courses->currentPage() == $courses->lastPage()) onclick="return false" @endif >NEXT {!! Html::image('img/next.png','error 404',['style'=>'width:30px; height:30px;  top:10px']) !!}</a>
-                    </div>
-                @endif
         @endif
     </div>
     </div>

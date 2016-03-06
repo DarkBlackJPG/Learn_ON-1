@@ -17,9 +17,25 @@
 </head>
 
     <body >
-    <div id="gornjalinija" style="position:fixed;z-index:10000"></div>
-    <div id="learn" style="position:fixed;z-index:10000"><a href="{{ url('main') }}">LEARN_ON</a></div>
-    <div id="podvucena" style="position:fixed;z-index:10000"></div>
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+    </div>
 
 
     <div id="desnimeni" style="position:fixed">
@@ -80,7 +96,7 @@
             </div>
             <div >
                 <div class="block" id="t&c_img">{!! Html::image('img/t&c.svg','alt',['style'=>'width:25px']) !!}</div>
-                <div class="block" id="t&c"><a href="{{URL('terms&conditions')}}" class="link">Terms & Conditions</a></div>
+                <div class="block" id="t&c"><a href="{{URL('terms&conditions')}}" class="link">T & C</a></div>
             </div>
         </div>
     </div>
@@ -94,14 +110,73 @@
             });
     </script>
     <script type="text/javascript">
-       $(document).ready(function(){
-           var width = $('#desnimeni').width()+20;
-           $('#content_wrapper').width($(window).width() - width);
-           $('#content_wrapper').height($(window).height()-119);
-           $(window).resize(function(){
-            $('#content_wrapper').height($(window).height()-119);
-            $('#content_wrapper').width($(window).width() - width);});
+        $(document).ready(function(){
 
+            var width = $('#desnimeni').width()+20;
+            $('#content_wrapper').width($(window).width() - width);
+            $('#content_wrapper').height($(window).height()-80);
+            $(window).resize(function(){
+                $('#content_wrapper').height($(window).height()-80);
+                $('#content_wrapper').width($(window).width() - width);
+            });
+            if ($(window).width() <= 800)
+            {
+                $('#content_wrapper').width($(window).width() - 20);
+                $('#content_wrapper').height($(window).height()-80);
+
+
+                $(window).resize(function () {
+                    $('#content_wrapper').height($(window).height() - 80);
+                    $('#content_wrapper').width($(window).width() - 20);
+                });
+
+
+            }
+            $(window).resize(function () {
+                if ($(window).width() <= 800)
+                {
+                    $('#content_wrapper').width($(window).width() - 20);
+                    $('#content_wrapper').height($(window).height()-80);
+
+
+                    $(window).resize(function () {
+                        $('#content_wrapper').height($(window).height() - 80);
+                        $('#content_wrapper').width($(window).width() - 20);
+                    });
+
+
+                }
+                if ($(window).width() > 800)
+                {
+                    var width = $('#desnimeni').width()+20;
+                    $('#content_wrapper').width($(window).width() - width);
+                    $('#content_wrapper').height($(window).height()-80);
+                    $(window).resize(function(){
+                        $('#content_wrapper').height($(window).height()-80);
+                        $('#content_wrapper').width($(window).width() - width);
+                    });
+
+
+                }
+            });
+
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#nav-icon3').click(function(){
+                $(this).toggleClass('open');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#hamburger_menu').click(function () {
+                $('#desnimeni').toggleClass('open');
+
+            });
         });
     </script>
 <div id="content_wrapper">

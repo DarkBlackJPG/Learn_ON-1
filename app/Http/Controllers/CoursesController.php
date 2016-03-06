@@ -187,16 +187,22 @@ class CoursesController extends Controller
         return view('pages.categories', compact('tags'));
     }
 
-    public function postSearch()
+    public function postSearch(Request $request)
     {
-        $keywords = Request::input('keywords');
+        $keywords = \Request::input('keywords');
 
-        $courses = Course::latest('published_at')->done()->published()->get();
+        $courses = Course::published()->done()->latest('published_at')->get();
+
+        $searchCourses = new \Illuminate\Database\Eloquent\Collection();
 
         if($keywords == null)
             return view::make('courses.searchedCourses')->with('searchCourses',$courses);
 
-        $searchCourses = Course::where('title', 'LIKE', '%' . $keywords . '%')->get();
+        foreach($courses as $course)
+        {
+            if(Str_contains(Strtolower($course->title),Strtolower($keywords)))
+                $searchCourses->add($course);
+        }
 
         return View::make('courses.searchedCourses')->with('searchCourses',$searchCourses);
     }
@@ -208,7 +214,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses= Course::latest('published_at')->Published()->Done()->get();
+        $courses= Course::latest('published_at')->Published()->Done()->Paginate(15);
         return view('pages.main', compact('courses'));
     }
 
@@ -220,7 +226,7 @@ class CoursesController extends Controller
     public function main()
     {
         $courses= Course::latest('published_at')->Published()->Done()->Paginate(15);
-        return view('pages.main', compact('courses','time'));
+        return view('pages.main', compact('courses'));
     }
 
     /**

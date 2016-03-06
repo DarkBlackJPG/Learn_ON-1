@@ -2,12 +2,27 @@
 
 @section('content')
     <body style="overflow: hidden">
-    <div id="gornjalinija"></div>
-    <div id="learn"><a href="/main">LEARN_ON</a></div>
-    <div id="podvucena"></div>
-    <div style="width:80%; left:18.7%; text-align:center; position:absolute;">
-        <section style="font-size:2em; font-family: Exo_Bold"> - {{$lecture->lecture_title}} - </section>
-    </div>
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+            <section class="header_text"> - {{$lecture->lecture_title}} - </section>
+
+
     @include('partials._levi_meni')
     <div id="content_wrapper">
         <a href="#" onclick="showHide('polje2')">
@@ -25,8 +40,8 @@
 
             </iframe></div>
         @if($lecture->video)
-            <div class="width" style="margin-top:15px; position:relative; width: 80%;  height: 2px; background-color: red; ">VIDEO</div>
-            <div style="position: relative; left:342px; margin-top:15px"><iframe width="650" height="366" src="{{$lecture->video}}" frameborder="0" allowfullscreen></iframe></div>
+            <div class="width" style="margin-top:15px;width: 80%;  height: auto; border-top:2px solid red; ">VIDEO</div>
+            <div style="margin-top:15px"><iframe width="650" height="366" src="{{$lecture->video}}" frameborder="0" allowfullscreen></iframe></div>
         @endif
     </div>
         </div>

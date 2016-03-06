@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-   <body id="jquery_body" style="background-color: #000000; margin: 0px;opacity:.95;overflow:auto; min-width: 1280px; width:100%" id="abc" onresize="resize()">
+   <body id="jquery_body" style="background-color: #000000; margin: 0px;opacity:.95;overflow:auto;  width:100%" id="abc" onresize="resize()">
     <div id="Container" style="background-color: #ee2033">
         <div id="Hhh" style="background-color: #5e5e5e;border-bottom: solid #ee2033 10px; " >
 
@@ -34,7 +34,7 @@
                             </div>
                         @endif
 
-                            <form method="post" action="{{ url('/auth/login') }}" role="form">
+                            <form method="post"  action="{{ url('/auth/login') }}" role="form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset id="inputs" style="border-style: none; padding: 0px;">
                                     <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Your email address"  required>
@@ -43,12 +43,12 @@
                                 <fieldset id="actions" style="text-align:center;" >
                                     <input type="submit" id="submit" class="btn btn-primary" value="Log In" style="margin-left: 60px;">
                                     <br/>
-                                    <label><input type="checkbox" style="margin-left:30px;"> Remember me</label>
+                                    <label style="text-align: center"><input type="checkbox" style="margin-left:30px;"> Remember me</label>
                                     <br/>
 
                                 </fieldset>
-                                <nav class="cl-effect-1">
-                                    <a class="btn btn-link" href="{{ url('/password/email') }}" id="F_pass" style="margin-left: 25px;">Forgot Password</a>
+                                <nav class="cl-effect-1" style="text-align: center">
+                                    <a class="btn btn-link" href="{{ url('/password/email') }}" id="F_pass"">Forgot Password</a>
 
                                 </nav>
 
@@ -99,6 +99,9 @@
         </div>
     </h1>
     <div id="logo" style="top:5%;margin-top:8%;right:0;position: fixed" align="top">
+        {!!Html::image('img/Owl.svd')!!}
+    </div>
+            <div id="logo3" style="top:60px;right:0;position: fixed" align="top">
         {!!Html::image('img/Owl.svd')!!}
     </div>
     </div>

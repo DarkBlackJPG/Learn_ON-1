@@ -1,17 +1,33 @@
 @extends('app')
 @section('content')
     <body style="overflow: hidden">
-    <div id="gornjalinija"></div>
-    <div id="learn"><a href="/main">LEARN_ON</a></div>
-    <div id="podvucena"></div>
-    <div style="width:35%; left:48.2%; position:absolute;">
-        <section style="font-size:2em; font-family: Intro_Bold"> - LECTURE EDITOR - </section>
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+        <section class="header_text" > - LECTURE EDITOR - </section>
+
     </div>
     @include('partials._levi_meni')
+    <div id="content_wrapper">
     <div id="polje4">
         <div class="width">
         {!! Form::open(['url'=>'/lecture/'.$id,'files'=>true]) !!}
-            <div class="form-group">
+            <div class="form-group" style="text-align: center">
                 {!! Form::text('lecture_title',null,['class' => 'width','id'=>'course_title','placeholder'=>'LECTURE TITLE HERE...','autocomplete'=>'off']) !!}
             </div>
             <div id="textbox_linija"></div>
@@ -20,15 +36,16 @@
             <input name="pdf" type="file" accept=".pdf" style="position:relative; left:290px; top:-150px;"/>
             <div id="video">Video URL:</div>
             {!! Form::text('video',null,['placeholder'=>'https://www.youtube.com/example','style'=>'position:relative; border:1; border-style:dashed; left:260px; top:-164px; width:500px; ']) !!}
-            <hr class="width" style="position:relative; top:-40px; width: 97.5%; left: -17px; height: 2px; background-color: black; ">
-            <div id="bottom_content">
+            <hr class="width" style="width: 97.5%;height: 2px; background-color: black; ">
+            <div style="text-align: center; margin-top: 20px">
                 <div>
                     <div class="form-group">
-                        {!! Form::textarea('body',null,['class' => 'width','style'=>'border: dashed red 2px; position:relative; top:5px; height: 175px; font-size: 1.5em; resize: none;', 'placeholder'=>'Description...']) !!}
+                        {!! Form::textarea('body',null,['class' => 'width','style'=>'border: dashed red 2px; width:80%;height: 175px; font-size: 1.5em; resize: none;', 'placeholder'=>'Description...']) !!}
                     </div>
-                    <button type="submit" class="addqu" style="cursor: pointer;  position:absolute; left:27px;  top:67%; width:1265px; height:254px;">{!! Html::image('img/add_lecture.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:1265px; height:254px;']) !!}</button>
+                    <button type="submit" class="addqu" style="cursor: pointer;   height:54px;">{!! Html::image('img/add_lecture.png','Error404',['class'=>'addqu','style'=>' height:100%;']) !!}</button>
 
                 </div>
+            </div>
             </div>
 {!!Form::close()!!}
 </body>

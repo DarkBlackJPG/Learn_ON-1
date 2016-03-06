@@ -1,0 +1,56 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 30, 2015 at 11:29 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `projekat`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'BUSINESS & MANAGEMENT', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'CREATIVE ARTS & MEDIA', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'HEALTH & PSYCHOLOGY', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'HISTORY', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 'LANGUAGES & CULTURES', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 'LAW', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 'LITERATURE', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 'NATURE & ENVIRONMENT', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 'ONLINE & DIGITAL', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'POLITICS & THE MODERN WORLD', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 'SCIENCE, MATHS & TECHNOLOGY', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -20,7 +20,7 @@ class TagsController extends Controller
     public function show(Tag $tag)
     {
         $tags = \DB::table('tags')->get();
-        $courses = $tag->courses()->published()->done()->latest('published_at')->paginate(3);
+        $courses = $tag->courses()->published()->done()->latest('published_at')->get();
 
         return view('pages.tags', compact ('courses','tags','tag'));
     }

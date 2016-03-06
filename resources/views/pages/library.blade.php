@@ -1,10 +1,25 @@
 @extends('app')
 @section('content')
 <body style="overflow: hidden">
-<div id="gornjalinija"></div>
-<div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-<div id="podvucena"></div>
-{!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search lectures','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
+<div id="gornjalinija">
+
+    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+    <div id="hamburger_menu">
+        <div id="nav-icon3">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <div id="menimeni">
+                MENU
+            </div>
+        </div>
+    </div>
+    <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+    {!! Form::text('requirement',null,['class' => 'form-control','placeholder'=> 'Search library','id'=>'search_bar','onkeydown'=>'down()','onkeyup'=>'up()']) !!}
+</div>
 @include('partials._levi_meni')
 <div id="content_wrapper">
 <a href="#" onclick="showHide('polje2')">

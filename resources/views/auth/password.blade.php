@@ -6,6 +6,9 @@
 <div id="Container1" style="background-color: red">
     <div id="Hhh" style="background-color: #5e5e5e;border-bottom: solid #ee2033 10px" >
         <div class="header" style="padding-top: 10px;font-family: 'Porter', cursive; margin:0 20px 0 0;">
+            <div id="logo2"  align="top">
+                {!!Html::image('img/Owl.svd')!!}
+            </div>
             <div id="about_us" style="float:right; background-color: transparent;" >
                 <nav>
                     <ul>
@@ -26,7 +29,7 @@
             </div>
         </div>
         <br/>
-        <div id="form_password_rex" style="margin-top: 15%">
+        <div id="form_password_rex" >
 
             <form role="form" method="POST" action="{{ url('/password/email') }}" id="form2" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

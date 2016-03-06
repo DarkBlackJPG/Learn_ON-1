@@ -4,11 +4,13 @@
     <body style="overflow: hidden">
     <div id="gornjalinija"></div>
     <div id="learn"><a href="/main">LEARN_ON</a></div>
+    <div><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:45px; position:absolute; left:250px;top:10px; ']) !!}</a></div>
     <div id="podvucena"></div>
     <div style="width:80%; left:18.7%; text-align:center; position:absolute;">
         <section style="font-size:2em; font-family: Exo_Bold"> - TEST EDITOR - </section>
     </div>
     @include('partials._levi_meni')
+    <div id="content_wrapper">
     <div id="polje4" style="overflow-x:hidden ">
         @foreach($questions as $question)
             <div style="position:relative; height: 390px">
@@ -44,7 +46,7 @@
                 <button type="submit" class="addqu" style="cursor: pointer;  position:absolute; left:100px; bottom:15px; width:270px; height:65px;">{!! Html::image('img/save.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:270px; height:65px;']) !!}</button>
                 {!! Form::close() !!}
                 {!! Form::open(['url'=>'/delete_question/'.$question->id, 'method'=>'POST']) !!}
-                <button type="submit" class="addqu" id="del" style="cursor: pointer; position:absolute; height:45px; width:150px; left:1150px; top:55px; ">{!! Html::image('img/delete.png','Error404',['class'=>'addqu','style'=>' position:absolute; height:45px; width:150px; left:0; top:0%;  ']) !!}</button>
+                <button type="submit" class="addqu" id="del" style="cursor: pointer; position:absolute; height:45px; width:150px; right:5px; top:0px; ">{!! Html::image('img/delete.png','Error404',['class'=>'addqu','style'=>' position:absolute; height:45px; width:150px; left:0; top:0%;  ']) !!}</button>
                 {!! Form::close() !!}
                 <div id="kraj_odgovora_linija" style="top: 385px"></div>
             </div>
@@ -53,10 +55,11 @@
         @endforeach
             <div style="padding-top: 10px;text-align:center; overflow: visible ">
                 {!! Form::open(['url'=>'/getQuestion/'.$question->test()->first()->course()->first()->id,'method'=>'GET']) !!}
-                <button type="submit" class="addqu" id="enroll" style="cursor: pointer;  position:relative; bottom: 10px; width:1265px; height:254px;">{!! Html::image('img/addqu.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:1265px; height:254px;']) !!}</button>
+                <button type="submit" class="addqu" id="enroll" style="cursor: pointer;  position:relative; left:5%; bottom: 30px; width:90%; height:200px;">{!! Html::image('img/addqu.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:90%;']) !!}</button>
                 {!! Form::close() !!}
             </div>
     </div>
+        </div>
     </body>
 @endsection
 @section('footer')

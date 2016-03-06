@@ -2,9 +2,25 @@
 @section ('content')
     <script type="text/javascript" src="{!! asset('ckeditor/ckeditor.js') !!}"></script>
     <body style="overflow: hidden">
-	<div id="gornjalinija"></div>
-	<div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-	<div id="podvucena"></div>
+    <div id="gornjalinija">
+
+        <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+    </div>
 	@include ('partials/_levi_meni')
     <div id="content_wrapper">
         <!-- Area for logo -->

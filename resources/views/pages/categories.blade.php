@@ -2,10 +2,25 @@
 
 @section('content')
     <body>
-        <div id="gornjalinija"></div>
+    <div id="gornjalinija">
+
         <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
-        <div id="podvucena"></div>
-        <!--<input type="text" style="width:35%; left:35%; top:1.5%; position:absolute;"/> -->
+        <div id="hamburger_menu">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <div id="menimeni">
+                    MENU
+                </div>
+            </div>
+        </div>
+        <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+    </div>
         @include('partials/_levi_meni')
         <div id="content_wrapper">
         <div id="link_container">
@@ -33,17 +48,7 @@ $(document).ready(function(){
         
         });
 </script> 
-<script type="text/javascript">
-   $(document).ready(function(){
-       var width = $('#desnimeni').width()+20;
-       $('#content_wrapper').width($(window).width() - width);
-       $('#content_wrapper').height($(window).height()-119);
-       $(window).resize(function(){
-        $('#content_wrapper').height($(window).height()-119);
-        $('#content_wrapper').width($(window).width() - width);});
 
-    });
-</script>
     </body>
 
 @endsection

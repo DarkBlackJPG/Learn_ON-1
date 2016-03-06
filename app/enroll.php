@@ -23,4 +23,26 @@ class enroll extends Model
     {
         $query->where('done','=',1);
     }
+
+    public static function GetFriends($user){
+        $userGroups = Enroll::where('user_id', $user->id)->get();
+        $i = 0;
+        $d=0;
+        $friends = null;
+        foreach($userGroups as $userGroup) {
+            $friend[$i] = Enroll::where('course_id', $userGroup->course_id)->whereNotIn('user_id', [\Auth::user()->id])->get();
+            foreach($friend[$i] as $friend[$d]){
+                $friends[$d] = User::find($friend[$d]->user_id);
+                $d++;
+            }
+            if($friend[$i] != '[]'){
+                $i++;
+            }
+        }
+        if($friends != null) {
+            return array_unique($friends);
+        } else {
+            return $friends;
+        }
+    }
 }

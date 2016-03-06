@@ -2,14 +2,30 @@
 @section('content')
     {!! Form::open(['url'=>'/question/'.$id]) !!}
 <body style="font-family: Intro_Bold; overflow: hidden">
-<div id="gornjalinija"></div>
-<div id="learn"><a href="{{url('main')}}"><div>LEARN</div><div style="position:absolute; top:0; left:100%;">_ON</div></a></div>
-<div id="podvucena"></div>
-<div style="width:35%; left:48.4%; position:absolute;">
-    <section style="font-size:2em; font-family: Intro_Bold"> - TEST EDITOR - </section>
+<div id="gornjalinija">
+
+    <div id="learn"><a href="{{ url('main') }}">LEARN_ON</a></div>
+    <div id="hamburger_menu">
+        <div id="nav-icon3">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <div id="menimeni">
+                MENU
+            </div>
+        </div>
+    </div>
+    <div id="chat"><a href="{{URL('chat')}}">{!! Html::image('img/chat.svg','alt',['style'=>'width:30px']) !!}</a></div>
+
+
+    <section class="header_text" > - TEST EDITOR - </section>
+
 </div>
-@include('partials._levi_meni')
-<div id="box">
+@include('partials/_levi_meni')
+<div id="content_wrapper">
+<div id="polje4">
     {!! Form::text('question',null,['id'=>'pitanje','placeholder'=>'THE QUESTION...','autocomplete'=>'off','style'=>'border:none']) !!}
     <div id="pitanje_linija"></div>
     <div id="prvi">1.</div>
@@ -35,11 +51,14 @@
     <div id="peti">5.</div>
     {!! Form::text('answer5',null,['id'=>'peti_odgovor','autocomplete'=>'off','placeholder'=>'answer']) !!}
     <div id="peti_odgovor_linija"></div>
-    {!! Form::checkbox('correct5',1,null,['style'=>'position:relative; left:450px; top:-148px']) !!}
+    {!! Form::checkbox('correct5',1,null,['style'=>'position:relative; left:450px; top:-145px']) !!}
     <div id="kraj_odgovora_linija"></div>
-    <div id="kraj_linija"></div>
+    <div style="width:100%;height: auto;text-align: center">
+    <button id="button" type="submit" class="addqu" style="cursor: pointer;  width:60%;">{!! Html::image('img/Addqu.png','Error404',['class'=>'addqu','style'=>'width:100%; height:100%;']) !!}</button>
+    </div>
+
 </div>
-<button type="submit" class="addqu" style="cursor: pointer;  position:absolute; left:20.2%; top:41.5%; width:1293px; height:254px;">{!! Html::image('img/Addqu.png','Error404',['class'=>'addqu','style'=>' position:absolute; left:0%; top:0%;  width:1293px; height:254px;']) !!}</button>
+
 {!! Form::close() !!}
 @endsection
 @section('footer')
@@ -73,6 +92,16 @@
                 }
             });
     </script>
+    <script>
+        $(document).ready(function(){
+        var x1=$('#button')
+        x1.height(x1.width()%4)
+        $(window).resize(function(){
+            x1.height(x1.width()%4)
+        });
+        });
+    </script>
 @endif
+</div>
 </body>
 @stop
