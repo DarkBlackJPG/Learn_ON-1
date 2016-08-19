@@ -119,7 +119,7 @@
             $.post( '/save', { id: id, guess1: correct1, guess2: correct2, guess3: correct3, guess4: correct4, guess5: correct5 },
                     $(this).find(':submit').attr('disabled','disabled'),
                     $(this).find(':submit').attr('class',''),
-                    $(this).find(':submit').attr('style','background: transparent; box-shadow:none; border:none; text-shadow:none; color:transparent; disabled: disabled; width:270px; height:65px;')
+                    $(this).find(':submit').attr('style','background: transparent; box-shadow:none; border:none; text-shadow:none; color:transparent; disabled: disabled;width:60%')
             );
         });
     </script>

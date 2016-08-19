@@ -10,6 +10,7 @@ use App\Http\Requests\CourseRequest;
 use App\Http\Requests\LectureRequest;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Requests\CommentRequest;
+use App\Like;
 use App\Tag;
 use App\Test;
 use App\Lecture;
@@ -37,6 +38,34 @@ class CoursesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin', ['only'=>['delete_questions','redirecting','see','getMyCourses','lecture_pdf','getExamEdit','questionUpdate','editLecture','lectureUpdate','edit','create','store','lecture','update','test','getLecture','test_create','course_img','delete_course','question','getQuestion','delete_lecture']]);
+    }
+
+    public function postSort()
+    {
+        $courses=Course::published()->done()->orderBy('likes','DESC')->get();
+        return View::make('courses.searchedCourses')->with('searchCourses',$courses);
+    }
+
+    public function postLike(\Illuminate\Http\Request $request)
+    {
+        $id = e($request->input('id'));
+        $course = Course::findOrFail($id);
+        if(Like::where('course','=',$id)->where('user','=',\Auth::user()->id)->exists())
+        {
+            $course->likes--;
+            $like= Like::where('course','=',$id)->where('user','=',\Auth::user()->id)->first();
+            $like->delete();
+        }
+        else
+        {
+            $course->likes++;
+            $like = new Like();
+            $like->course=$id;
+            $like->user=Auth::user()->id;
+            $like->save();
+        }
+        $course->save();
+        return view::make('courses.liked',compact ('course'));
     }
 
     public function comment_delete($id)

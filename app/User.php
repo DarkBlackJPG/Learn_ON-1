@@ -93,4 +93,11 @@ class User extends Model implements AuthenticatableContract,
         ";
     }
 
+    public static function writeScriptz() {
+        echo "
+            var channel = pusher.subscribe('" . \Auth::user()->chat_key . "');
+            channel.bind('new-message', notificationz);
+        ";
+    }
+
 }

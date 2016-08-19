@@ -30,6 +30,8 @@ Route::get('see/{id}','CoursesController@see');
 Route::get('finish/{id}','CoursesController@finish');
 Route::post('comment','CoursesController@comment');
 Route::post('comment_delete/{id}','CoursesController@comment_delete');
+Route::post('like','CoursesController@postLike');
+Route::post('sort','CoursesController@postSort');
 
 
 Route::Controllers([

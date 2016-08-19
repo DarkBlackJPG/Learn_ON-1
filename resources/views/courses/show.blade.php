@@ -1,3 +1,4 @@
+
 @extends('app')
 
 @section('content')
@@ -81,7 +82,8 @@
         </div>
     </div>
     </div>
-    @if(App\Enroll::where(['user_id'=>Auth::user()->id,'course_id'=>$course->id])->exists())
+
+    @if(App\Enroll::where('user_id','=',\Auth::user()->id)->where('course_id','=',$course->id)->exists())
         <script>
             $('#enroll').on('click',function(e){l
                 e.preventDefault();

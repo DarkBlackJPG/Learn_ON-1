@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
 			$table->string('title');
 			$table->string('thumbnail')->default('default.jpg');
 			$table->text('body');
+            $table->integer('likes')->default(0);
 			$table->boolean('done')->default(0);
             $table->timestamps();
 			$table->timestamp('published_at');
@@ -35,6 +36,16 @@ class CreateCoursesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('likes',function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('course')->unsigned()->index();
+            $table->foreign('course')->references('id')->on('courses')->onDelete('cascade');
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -46,5 +57,6 @@ class CreateCoursesTable extends Migration
     {
         Schema::drop('course_user');
         Schema::drop('courses');
+        Schema::drop('likes');
     }
 }

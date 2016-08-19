@@ -172,7 +172,7 @@ src: url(link)
         font-size: 1em;
         top:18px;
     }
-    
+
 }
 #podvucena
 {
@@ -621,7 +621,7 @@ height: 100%;
     {
         margin: auto;
     }
-    #left_info 
+    #left_info
     {
         float: none;
         margin-bottom: 10px;
@@ -678,7 +678,7 @@ height: 100%;
 {
     width: 30px;
 
-    
+
 }
     #hamburger_menu
     {
@@ -710,7 +710,7 @@ height: 100%;
         position: absolute;
         top: 70px;
         left:10px;
-        
+
         overflow: scroll;
         height: 100%;
     }
@@ -1202,7 +1202,6 @@ nav #login-content {
   top: 50px;
   right: 0;
   z-index: 999;
-  background: #fff;
   background-color: #ffffff;
   padding: 15px;
 
@@ -1215,7 +1214,7 @@ nav #about-content {
   top: 50px;
   right: 0;
   z-index: 998;
-  background: #fff;
+
   background-color: #ffffff;
   padding: 15px;
   border: solid grey;

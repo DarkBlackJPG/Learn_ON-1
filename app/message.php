@@ -18,5 +18,4 @@ class message extends Model
     public function getCreatedAtAttribute($date){
         return $this->asDateTime($date)->diffForHumans();
     }
-
 }

@@ -28,10 +28,13 @@
     <div id="content_wrapper">
     <div id="polje4">
         <div class="width" id="markup">
+            {!! Form::open(['url'=>'/delete_course/'.$course->id, 'method'=>'POST']) !!}
+            <button type="submit" class="addqu" id="del" style="cursor: pointer; position:absolute; height:45px; width:150px; right:5px; top:0px; ">{!! Html::image('img/delete.png','Error404',['class'=>'addqu','style'=>' position:absolute; height:45px; width:150px; left:0; top:0%;  ']) !!}</button>
+            {!! Form::close() !!}
             <div id="thumbnail" style="margin-top: 125px">
                 {!! Html::image('img/courses/'.$course->thumbnail,'error404',['style'=>'height: 190px; width: 350px;']) !!}
 
-            <div  style=" top:245px; left: 400px;margin-top">
+            <div  style=" top:245px; left: 400px;">
                 {!! Form::open(['url'=>'course_img','files'=>true, 'method'=>'POST']) !!}
                 {!! Form::hidden('id',$course->id) !!}
                 Change the thumbnail:<div style="width: 350px; overflow: hidden">{!! Form::file('thumbnail',null,['accept'=>'image/*','style'=>'width:200px']) !!}</div> {!! Form::submit('Upload Image', ['class'=>'btn1']) !!}

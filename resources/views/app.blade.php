@@ -14,6 +14,7 @@
     <link href="{!! asset('select2-4.0.1-rc.1\dist\css\select2.min.css') !!}" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
     <title>Learn_ON</title>
 </head>
 <script type="text/javascript">
@@ -95,13 +96,42 @@
     <?php $notifications= \App\Notification::where('to','=',\Auth::user()->id)->get(); ?>
     @foreach($notifications as $notification)
         <script>
-                toastr.options.showMethod = 'slideDown';
-                toastr.options.timeOut = 15000;
-                toastr.options.onclick =function(){window.location="{{URL::to('/chat')}}";};
-                toastr.info("{{ \App\User::findOrFail($notification->from)->username }} sent you a new message {{ $notification->created_at }}", null, {"positionClass": "toast-bottom-left"});
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.timeOut = 15000;
+            toastr.options.onclick =function(){window.location="{{URL::to('/chat')}}";};
+            toastr.info("{{ \App\User::findOrFail($notification->from)->username }} sent you a new message {{ $notification->created_at }}", null, {"positionClass": "toast-bottom-left"});
         </script>
         <?php $notification->delete(); ?>
     @endforeach
+
+    <script>
+        function notificationz(data) {
+            if(data.username != "{{ \Auth::user()->username }}")
+            {
+                toastr.options.showMethod = 'slideDown';
+                toastr.options.timeOut = 15000;
+                toastr.options.onclick = function () {
+                    window.location = "{{URL::to('/chat')}}";
+                };
+                toastr.info(data.username + " sent you a new message", null, {"positionClass": "toast-bottom-left"});
+                $.post('/chat/drop');
+            }
+        }
+
+        var pusher = new Pusher('{{env("PUSHER_KEY")}}', {
+            authEndpoint: '/chat/auth',
+            auth: {
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }
+        });
+
+        <?php
+        \App\User::writeScriptz();
+        ?>
+
+    </script>
 @endif
 
 <script type="text/javascript" src="{!! asset('select2-4.0.1-rc.1\dist\js\select2.min.js') !!}"></script>

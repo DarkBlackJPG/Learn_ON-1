@@ -27,6 +27,11 @@ class ChatController extends Controller
 
     }
 
+    public function postDrop()
+    {
+        Notification::where('to','=',\Auth::user()->id)->delete();
+    }
+
     public function postNext(Request $request)
     {
         $this->pusher = App::make('pusher');

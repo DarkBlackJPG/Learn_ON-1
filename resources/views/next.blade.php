@@ -1,4 +1,12 @@
+<style>
 
+
+    #messages {
+        height: 300px;
+        overflow: auto;
+        padding-top: 5px;
+    }
+</style>
 
 <!--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
 <script src="https://cdn.rawgit.com/samsonjs/strftime/master/strftime-min.js"></script>
